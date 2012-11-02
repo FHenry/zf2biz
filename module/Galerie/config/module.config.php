@@ -51,7 +51,7 @@ return array(
                     'edit' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/edition/:id',
+                            'route'    => '/editer/:id',
                             'constraints' => array(
                                 'id' => '[1-9][0-9]*',
                             ),
@@ -64,7 +64,7 @@ return array(
                     'del' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/suppression/:id',
+                            'route'    => '/supprimer/:id',
                             'constraints' => array(
                                 'id' => '[1-9][0-9]*',
                             ),
