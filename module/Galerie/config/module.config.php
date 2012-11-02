@@ -36,6 +36,83 @@ return array(
                 ),
                 'verb' => 'get',
                 'may_terminate' => true,
+                'child_routes' => array(
+
+                    'add' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/ajout',
+                            'defaults' => array(
+                                'action' => 'edit',
+                            ),
+                        ),
+                        'verb' => 'get,post',
+                    ),
+                    'edit' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/edition/:id',
+                            'constraints' => array(
+                                'id' => '[1-9][0-9]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'edit',
+                            ),
+                        ),
+                        'verb' => 'get,post',
+                    ),
+                    'del' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/suppression/:id',
+                            'constraints' => array(
+                                'id' => '[1-9][0-9]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'del',
+                            ),
+                        ),
+                        'verb' => 'get,post',
+                    ),
+                    'view' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/voir/:id',
+                            'constraints' => array(
+                                'id' => '[1-9][0-9]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'view',
+                            ),
+                        ),
+                    ),
+                    'add_or_edit' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/ajouter_editer/[:id]',
+                            'constraints' => array(
+                                'id' => '[1-9][0-9]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'edit',
+                                'id' => null,
+                            ),
+                        ),
+                        'verb' => 'get,post',
+                    ),
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
             ),
         ),
     ),
