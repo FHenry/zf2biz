@@ -1,6 +1,6 @@
-Alias /appblanche /var/git/zf2biz/application-blanche/public
+Alias /galerie /var/git/zf2biz/galerie/public
 
-<Directory /var/git/zf2biz/application-blanche/public>
+<Directory /var/git/zf2biz/galerie/public>
 	Order deny,allow
 	Allow from all
 
