@@ -22,4 +22,21 @@ return array(
             'galerie' => __DIR__ . '/../view',
         ),
     ),
+    'router' => array(
+        'routes' => array(
+            'galerie' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/galerie',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Galerie\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+                'verb' => 'get',
+                'may_terminate' => true,
+            ),
+        ),
+    ),
 );
