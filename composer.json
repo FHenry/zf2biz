@@ -1,6 +1,6 @@
 {
-    "name": "zf2biz/application-blanche",
-    "description": "Application blanche pour ZF2",
+    "name": "zf2biz/galerie",
+    "description": "Galerie construite à partir de l'Application blanche pour ZF2",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
