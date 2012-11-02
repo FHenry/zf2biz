@@ -1,10 +1,10 @@
 <VirtualHost *:80>
-	ServerName appblanche.local
-	DocumentRoot /var/git/zf2biz/application-blanche/public
+	ServerName galerie.local
+	DocumentRoot /var/git/zf2biz/gallerie/public
 
 	SetEnv APPLICATION_ENV "development"
 
-	<Directory /var/git/zf2biz/application-blanche/public>
+	<Directory /var/git/zf2biz/galerie/public>
 		Order deny,allow
 		Allow from all
 
