@@ -27,7 +27,7 @@ return array(
             'galerie' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/galerie',
+                    'route'    => '/galeries',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Galerie\Controller',
                         'controller'    => 'Index',
