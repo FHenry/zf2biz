@@ -22,7 +22,7 @@ class GalerieB
         $this->updated = isset($data['updated']) ? $data['updated'] : null;
     }
 
-    public function toArray($data)
+    public function toArray()
     {
         return array(
             'id' => $this->id,
