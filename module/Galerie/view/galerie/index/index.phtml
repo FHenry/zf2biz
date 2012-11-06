@@ -1,24 +1,37 @@
 <p>vue <em>back-office</em> d&rsquo;une <strong>galerie</strong>&nbsp;: <?php echo $this->translate('index', 'galerie'); ?></p>
 
-<p>Affichage des galeries avec GalerieArray (test du fetchAll)&nbsp;:</p>
+
+<h1>GalerieArray</h1>
+<h2>test de fetchAll()</h2>
 
 <pre><?php echo $GalerieArray_all->count(); ?></pre>
 <pre><?php print_r($GalerieArray_all->toArray()); ?></pre>
 
-<p>Affichage d'une galerie avec GalerieArray (test du getGalerie)&nbsp;:</p>
+<h2>test de getGalerie</h2>
 
 <pre><?php print_r($GalerieArray_one); ?></pre>
 <p>Identifiant&nbsp;: <?php echo $GalerieArray_one['id']; ?></p>
 
 
-
-
-<p>Affichage des galeries avec GalerieA (test du fetchAll)&nbsp;:</p>
+<h1>GalerieA</h1>
+<h2>test de fetchAll()</h2>
 
 <pre><?php echo $GalerieA_all->count(); ?></pre>
 <pre><?php print_r($GalerieA_all->toArray()); ?></pre>
 
-<p>Affichage d'une galerie avec GalerieA (test du getGalerie)&nbsp;:</p>
+<h2>test de getGalerie</h2>
 
 <pre><?php print_r($GalerieA_one); ?></pre>
 <p>Identifiant&nbsp;: <?php echo $GalerieA_one->id; ?></p>
+
+
+<h1>GalerieB</h1>
+<h2>test de fetchAll()</h2>
+
+<pre><?php echo $GalerieB_all->count(); ?></pre>
+<pre><?php print_r($GalerieB_all->toArray()); ?></pre>
+
+<h2>test de getGalerie</h2>
+
+<pre><?php print_r($GalerieB_one); ?></pre>
+<p>Identifiant&nbsp;: <?php echo $GalerieB_one->getId(); ?></p>

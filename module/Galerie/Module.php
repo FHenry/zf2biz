@@ -12,6 +12,7 @@ use Zend\Mvc\ModuleRouteListener;
 
 use Galerie\Model\GalerieArrayTable;
 use Galerie\Model\GalerieATable;
+use Galerie\Model\GalerieBTable;
 
 class Module implements
     AutoloaderProviderInterface,
@@ -55,6 +56,11 @@ class Module implements
                 },
                 'Galerie\Model\GalerieATable' => function($sm) {
                     return new GalerieATable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+                'Galerie\Model\GalerieBTable' => function($sm) {
+                    return new GalerieBTable(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
                 },
