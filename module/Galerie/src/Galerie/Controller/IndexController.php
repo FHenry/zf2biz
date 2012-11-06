@@ -12,6 +12,7 @@ class IndexController extends AbstractActionController
     private $_galerieATable;
     private $_galerieBTable;
     private $_galerieCTable;
+    private $_galerieCTable2;
 
 
     private function _getGalerieArrayTable()
@@ -50,6 +51,15 @@ class IndexController extends AbstractActionController
         return $this->_galerieCTable;
     }
 
+    private function _getGalerieCTable2()
+    {
+        if (!$this->_galerieCTable2) {
+            $sm = $this->getServiceLocator();
+            $this->_galerieCTable2 = $sm->get('Galerie\Model\GalerieCTable2');
+        }
+        return $this->_galerieCTable2;
+    }
+
     public function indexAction() 
     { 
         return new ViewModel(array(
@@ -61,6 +71,8 @@ class IndexController extends AbstractActionController
             'GalerieB_one' => $this->_getGalerieBTable()->getGalerie(1),
             'GalerieC_all' => $this->_getGalerieCTable()->fetchAll(),
             'GalerieC_one' => $this->_getGalerieCTable()->getGalerie(1),
+            'GalerieC2_all' => $this->_getGalerieCTable2()->fetchAll(),
+            'GalerieC2_one' => $this->_getGalerieCTable2()->getGalerie(1),
         )); 
     } 
 

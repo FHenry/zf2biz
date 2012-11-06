@@ -7,13 +7,17 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
+
 use Zend\EventManager\EventInterface;
 use Zend\Mvc\ModuleRouteListener;
+
 
 use Galerie\Model\GalerieArrayTable;
 use Galerie\Model\GalerieATable;
 use Galerie\Model\GalerieBTable;
 use Galerie\Model\GalerieCTable;
+use Galerie\Model\GalerieCTable2;
+
 
 class Module implements
     AutoloaderProviderInterface,
@@ -67,6 +71,11 @@ class Module implements
                 },
                 'Galerie\Model\GalerieCTable' => function($sm) {
                     return new GalerieCTable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+                'Galerie\Model\GalerieCTable2' => function($sm) {
+                    return new GalerieCTable2(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
                 },
