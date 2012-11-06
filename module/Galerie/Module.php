@@ -5,14 +5,19 @@ namespace Galerie;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
 use Zend\EventManager\EventInterface;
 use Zend\Mvc\ModuleRouteListener;
 
+use Galerie\Model\GalerieArrayTable;
+use Galerie\Model\GalerieATable;
+
 class Module implements
     AutoloaderProviderInterface,
     ConfigProviderInterface,
-    BootstrapListenerInterface
+    BootstrapListenerInterface,
+    ServiceProviderInterface
 {
 
     public function getAutoloaderConfig() 
@@ -39,4 +44,21 @@ class Module implements
         $e->getApplication()->getServiceManager()->get('translator'); 
     } 
 
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Galerie\Model\GalerieArrayTable' => function($sm) {
+                    return new GalerieArrayTable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+                'Galerie\Model\GalerieATable' => function($sm) {
+                    return new GalerieATable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+            ),
+        );
+    }
 }
