@@ -36,7 +36,7 @@ class Module implements
 
     public function onBootstrap(EventInterface $e)
     { 
-//        $e->getApplication()->getServiceManager()->get('translator'); 
+        $e->getApplication()->getServiceManager()->get('translator'); 
     } 
 
 }
