@@ -1,5 +1,6 @@
 <?php
 
 return array(
-    'Custom\Model\entity' => __DIR__ . '/Model/Entity.php',
+    'Custom\Model\Entity' => __DIR__ . '/Model/Entity.php',
+    'Custom\Model\Manager' => __DIR__ . '/Model/Manager.php',
 );
