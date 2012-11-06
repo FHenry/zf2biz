@@ -29,7 +29,7 @@ class GalerieA
             'name' => $this->name,
             'description' => $this->description,
             'created' => $this->created,
-           'updated' => $this->updated,
+            'updated' => $this->updated,
         );
     }
 

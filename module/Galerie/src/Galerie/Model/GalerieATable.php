@@ -51,6 +51,7 @@ class GalerieATable extends AbstractTableGateway
         if ($galerie->id === null) {
             $this->insert(
                 array(
+                    'id_user' => $galerie->id_user,
                     'name' => $galerie->name,
                     'description' => $galerie->description,
                 )
@@ -58,6 +59,7 @@ class GalerieATable extends AbstractTableGateway
         } elseif ($this->getGalerie($galerie->id)) {
             $this->update(
                 array(
+                    'id_user' => $galerie->id_user,
                     'name' => $galerie->name,
                     'description' => $galerie->description,
                 ),
@@ -66,7 +68,7 @@ class GalerieATable extends AbstractTableGateway
                 )
             );
         } else {
-            throw new \Exception("cannot update row $galerie->id in table 'galerie'");
+            throw new \Exception("cannot update row {$galerie->id} in table 'galerie'");
         }
     }
 
