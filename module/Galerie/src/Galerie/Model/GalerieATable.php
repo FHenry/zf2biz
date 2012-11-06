@@ -46,7 +46,7 @@ class GalerieATable extends AbstractTableGateway
         return $row;
     }
 
-/*    public saveGalerie(GalerieA $galerie)
+    public function saveGalerie(GalerieA $galerie)
     {
         if ($galerie->id === null) {
             $this->insert(
@@ -69,7 +69,7 @@ class GalerieATable extends AbstractTableGateway
             throw new \Exception("cannot update row $galerie->id in table 'galerie'");
         }
     }
-*/
+
     public function deleteGalerie($id)
     {
         $this->delete(array(
