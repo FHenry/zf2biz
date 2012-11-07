@@ -66,7 +66,7 @@ class IndexController extends AbstractActionController
     public function delAction() 
     { 
         return $this->redirect()->toRoute('galerie/view', array(
-            'id' => $id,
+            'id' => $this->params()->fromRoute('id', null),
         ));
     } 
 
