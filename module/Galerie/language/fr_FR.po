@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-07 21:54+0100\n"
-"PO-Revision-Date: 2012-11-07 21:55+0100\n"
+"POT-Creation-Date: 2012-11-07 23:56+0100\n"
+"PO-Revision-Date: 2012-11-07 23:56+0100\n"
 "Last-Translator: Sébastien CHAZALLET <s.chazallet@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -35,9 +35,25 @@ msgstr "Propriétaire"
 msgid "Galerie_index_table_nb"
 msgstr "Nombre"
 
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:19
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:16
+msgid "Galerie_index_table_actions"
+msgstr "Actions"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:22
 msgid "Galerie_index_table_void"
 msgstr "Il n'y a aucune galeries pour le moment"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:39
+msgid "Galerie_index_table_lien_view"
+msgstr "Voir"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:40
+msgid "Galerie_index_table_lien_edit"
+msgstr "Éditer"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:41
+msgid "Galerie_index_table_lien_del"
+msgstr "Supprimer"
 
 #~ msgid "index"
 #~ msgstr "Page d'accueil galerie/back-office"

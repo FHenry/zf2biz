@@ -6,6 +6,7 @@ use Custom\Model\Entity;
 
 class GalerieInfo extends Entity
 {
+    public $id;
     public $name;
     public $description;
     public $username;
@@ -13,6 +14,7 @@ class GalerieInfo extends Entity
 
 
     protected $columns = array(
+        'id',
         'name',
         'description',
         'username',

@@ -43,7 +43,7 @@ class GalerieInfoTable implements TableGatewayInterface
     public function select($where = null)
     {
         $select = $this->sql->select()
-            ->columns(array('name', 'description'))
+            ->columns(array('id', 'name', 'description'))
             ->join('user', 'gallery.id_user = user.id', array(
                 'username' => new \Zend\Db\Sql\Expression("user.firstname || ' ' || user.lastname")
             ))
