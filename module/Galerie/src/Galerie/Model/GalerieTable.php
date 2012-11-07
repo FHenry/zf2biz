@@ -5,13 +5,13 @@ use Zend\Db\Adapter\Adapter;
 use Custom\Model\Manager;
 use Custom\Model\Entity;
 
-class GalerieCTable3 extends Manager
+class GalerieTable extends Manager
 {
     public $table = 'gallery';
 
     public function __construct(Adapter $adapter)
     {
-        parent::__construct($adapter, new GalerieC());
+        parent::__construct($adapter, new Galerie());
     }
 
     public function get($id)

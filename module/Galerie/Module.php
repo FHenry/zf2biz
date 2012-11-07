@@ -12,12 +12,7 @@ use Zend\EventManager\EventInterface;
 use Zend\Mvc\ModuleRouteListener;
 
 
-use Galerie\Model\GalerieArrayTable;
-use Galerie\Model\GalerieATable;
-use Galerie\Model\GalerieBTable;
-use Galerie\Model\GalerieCTable;
-use Galerie\Model\GalerieCTable2;
-use Galerie\Model\GalerieCTable3;
+use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
 
 
@@ -56,33 +51,8 @@ class Module implements
     {
         return array(
             'factories' => array(
-                'Galerie\Model\GalerieArrayTable' => function($sm) {
-                    return new GalerieArrayTable(
-                        $sm->get('Zend\Db\Adapter\Adapter')
-                    );
-                },
-                'Galerie\Model\GalerieATable' => function($sm) {
-                    return new GalerieATable(
-                        $sm->get('Zend\Db\Adapter\Adapter')
-                    );
-                },
-                'Galerie\Model\GalerieBTable' => function($sm) {
-                    return new GalerieBTable(
-                        $sm->get('Zend\Db\Adapter\Adapter')
-                    );
-                },
-                'Galerie\Model\GalerieCTable' => function($sm) {
-                    return new GalerieCTable(
-                        $sm->get('Zend\Db\Adapter\Adapter')
-                    );
-                },
-                'Galerie\Model\GalerieCTable2' => function($sm) {
-                    return new GalerieCTable2(
-                        $sm->get('Zend\Db\Adapter\Adapter')
-                    );
-                },
-                'Galerie\Model\GalerieCTable3' => function($sm) {
-                    return new GalerieCTable3(
+                'Galerie\Model\GalerieTable' => function($sm) {
+                    return new GalerieTable(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
                 },

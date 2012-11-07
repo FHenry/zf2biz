@@ -4,7 +4,7 @@ namespace Galerie\Model;
 
 use Custom\Model\Entity;
 
-class GalerieC extends Entity
+class Galerie extends Entity
 {
     public $id;
     public $id_user;
