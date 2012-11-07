@@ -87,4 +87,37 @@ class GalerieInfoTable implements TableGatewayInterface
         throw new \Exception('delete is not allowed');
     }
 
+    public function all()
+    {
+        return $this->select();
+    }
+
+    public function one($id)
+    {
+        if ($id === null) {
+            $row = null;
+        } else {
+            $row = $this->select(array('gallery.id' => (int) $id))->current();
+        }
+        if (!$row) {
+            throw new \Exception("cannot get row {id: {$id}} in table 'galerie'");
+        }
+        return $row;
+    }
+
+    public function any($id)
+    {
+        if ($id === null) {
+            $row = null;
+        } else {
+            $row = $this->select(array('gallery.id' => (int) $id))->current();
+        }
+        return $row;
+    }
+
+    public function all_by_user($id_user)
+    {
+        return $this->select(array('gallery.id_user' => (int) $id_user));
+    }
+
 }
