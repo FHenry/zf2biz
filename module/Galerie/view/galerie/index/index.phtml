@@ -1,9 +1,38 @@
-<p>vue <em>back-office</em> d&rsquo;une <strong>galerie</strong>&nbsp;: <?php echo $this->translate('index', 'galerie'); ?></p>
+<h1><?php echo $this->translate('Galerie_index_title', 'galerie'); ?></h1>
 
-
-<h1>Galerie</h1>
-<h2>test de la méthode all()</h2>
-
-<pre><?php echo $galeries->count(); ?></pre>
-<pre><?php print_r($galeries->toArray()); ?></pre>
-
+<table id="galeries">
+	<tr>
+		<th>
+			<strong><?php echo $this->translate('Galerie_index_table_name', 'galerie'); ?></strong>
+			<em><?php echo $this->translate('Galerie_index_table_description', 'galerie'); ?></em>
+		</th>
+		<th>
+			<?php echo $this->translate('Galerie_index_table_username', 'galerie'); ?>
+		</th>
+		<th>
+			<?php echo $this->translate('Galerie_index_table_nb', 'galerie'); ?>
+		</th>
+	</tr>
+	<?php if ($galeries->count() == 0): ?>
+	<tr>
+		<td colspan="4">
+			<strong><?php echo $this->translate('Galerie_index_table_void', 'galerie'); ?></strong>
+		</td>
+	</tr>
+	<?php else: ?>
+	<?php foreach($galeries as $galerie): ?>
+	<tr>
+		<td>
+			<strong><?php echo $this->escapeHtml($galerie->name); ?></strong>
+			<em><?php echo $this->escapeHtml($galerie->description); ?></em>
+		</td>
+		<td>
+			<?php echo $this->escapeHtml($galerie->username); ?>
+		</td>
+		<td>
+			<?php echo $this->escapeHtml($galerie->nb); ?>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	<?php endif; ?>
+</table>

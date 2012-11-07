@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-02 15:39+0100\n"
-"PO-Revision-Date: 2012-11-02 15:46+0100\n"
+"POT-Creation-Date: 2012-11-07 21:54+0100\n"
+"PO-Revision-Date: 2012-11-07 21:55+0100\n"
 "Last-Translator: Sébastien CHAZALLET <s.chazallet@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -16,6 +16,28 @@ msgstr ""
 "X-Poedit-SearchPath-1: .\n"
 
 #: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:1
-msgid "index"
-msgstr "Page d'accueil galerie/back-office"
+msgid "Galerie_index_title"
+msgstr "Liste des galeries"
 
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:6
+msgid "Galerie_index_table_name"
+msgstr "Nom de la galerie"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:7
+msgid "Galerie_index_table_description"
+msgstr "Description"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:10
+msgid "Galerie_index_table_username"
+msgstr "Propriétaire"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:13
+msgid "Galerie_index_table_nb"
+msgstr "Nombre"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:19
+msgid "Galerie_index_table_void"
+msgstr "Il n'y a aucune galeries pour le moment"
+
+#~ msgid "index"
+#~ msgstr "Page d'accueil galerie/back-office"
