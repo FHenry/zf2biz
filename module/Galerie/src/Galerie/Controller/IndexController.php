@@ -50,15 +50,12 @@ class IndexController extends AbstractActionController
 
     public function viewAction() 
     {
-        $galerie = $this->_getGalerieInfoTable()->any(
-            $this->params()->fromRoute('id', null)
-        );
-        if (!$galerie) {
-            $this->getResponse()->setStatusCode(404);
-            return;
-        }
+        $id = $this->params()->fromRoute('id', null);
+        $galerie = $this->_getGalerieInfoTable()->any($id);
         return new ViewModel(array(
+            'id' => $id,
             'galerie' => $galerie,
         ));
     } 
+
 } 
