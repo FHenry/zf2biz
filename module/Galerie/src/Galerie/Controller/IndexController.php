@@ -50,6 +50,10 @@ class IndexController extends AbstractActionController
 
     public function viewAction() 
     { 
-        return array(); 
+        return new ViewModel(array(
+            'galerie' => $this->_getGalerieInfoTable()->one(
+                1
+            ),
+        )); 
     } 
 } 
