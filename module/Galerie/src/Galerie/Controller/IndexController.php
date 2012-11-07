@@ -52,7 +52,7 @@ class IndexController extends AbstractActionController
     { 
         return new ViewModel(array(
             'galerie' => $this->_getGalerieInfoTable()->one(
-                1
+                $this->params()->fromRoute('id', null)
             ),
         )); 
     } 
