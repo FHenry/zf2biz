@@ -34,7 +34,7 @@ class IndexController extends AbstractActionController
     public function indexAction() 
     { 
         return new ViewModel(array(
-            'all' => $this->_getGalerieInfoTable()->all(),
+            'galeries' => $this->_getGalerieInfoTable()->all(),
         )); 
     } 
 
