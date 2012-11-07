@@ -1,0 +1,90 @@
+<?php
+namespace Galerie\Model;
+
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGatewayInterface;
+use Zend\Db\Sql\Sql;
+
+use Custom\Model\Entity;
+
+class GalerieInfoTable implements TableGatewayInterface
+{
+
+    protected $adapter;
+    protected $resultSetPrototype;
+    protected $sql;
+
+    public function __construct(Adapter $adapter) {
+        // Gestion de l'adaptateur
+        if (!$adapter instanceof Adapter) {
+            throw new Exception\RuntimeException('GalerieInfoTable does not have an valid Adapter parameter');
+        }
+        $this->adapter = $adapter;
+
+        // Utilisation du patron de conception Prototype
+        // pour la création des objets ResultSet
+        $this->resultSetPrototype = new ResultSet();
+        $this->resultSetPrototype->setArrayObjectPrototype(
+            new GalerieInfo()
+        );
+
+        // Initialisation de l'outil de création de requête
+        $this->sql = new Sql($this->adapter, $this->getTable());
+    }
+
+
+    public function getTable()
+    {
+        return 'gallery'; // Table centrale de la requête
+    }
+
+
+    public function select($where = null)
+    {
+        $select = $this->sql->select()
+            ->columns(array('name', 'description'))
+            ->join('user', 'gallery.id_user = user.id', array(
+                'username' => new \Zend\Db\Sql\Expression("user.firstname || ' ' || user.lastname")
+            ))
+            ->join('photo', 'gallery.id = photo.id_gallery', array(
+                'nb' => new \Zend\Db\Sql\Expression('count(photo.id)')
+            ))
+            ->group(array(
+                'user.lastname',
+                'user.firstname',
+                'gallery.name'
+            ))
+            ->order(array(
+                'user.lastname',
+                'user.firstname',
+                'gallery.name'
+            ));
+        if ($where) {
+            $select->where($where);
+        }
+
+        // prepare and execute
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute();
+
+        // build result set
+        $resultSet = clone $this->resultSetPrototype;
+        $resultSet->initialize($result);
+
+        return $resultSet;
+    }
+
+    public function insert($set) {
+        throw new \Exception('insert is not allowed');
+    }
+
+    public function update($set, $where = null) {
+        throw new \Exception('update is not allowed');
+    }
+
+    public function delete($where) {
+        throw new \Exception('delete is not allowed');
+    }
+
+}

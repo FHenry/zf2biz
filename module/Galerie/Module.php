@@ -18,6 +18,7 @@ use Galerie\Model\GalerieBTable;
 use Galerie\Model\GalerieCTable;
 use Galerie\Model\GalerieCTable2;
 use Galerie\Model\GalerieCTable3;
+use Galerie\Model\GalerieInfoTable;
 
 
 class Module implements
@@ -82,6 +83,11 @@ class Module implements
                 },
                 'Galerie\Model\GalerieCTable3' => function($sm) {
                     return new GalerieCTable3(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+                'Galerie\Model\GalerieInfoTable' => function($sm) {
+                    return new GalerieInfoTable(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
                 },

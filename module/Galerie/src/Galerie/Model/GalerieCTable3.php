@@ -42,4 +42,37 @@ class GalerieCTable3 extends Manager
         ));
     }
 
+
+    // Fonctionnalités supplémentaires
+
+    public function get_by_owner($id_user)
+    {
+        return $this->select(array(
+            'id_user' => (int) $id_user,
+        ));
+    }
+
+    public function delete_by_owner($id_user)
+    {
+        $this->delete(array(
+            'id_user' => (int) $id_user,
+        ));
+    }
+
+    public function get_by_name($name)
+    {
+        // la colonne 'name' est UNIQUE
+        return $this->one(array(
+            'name' => name,
+        ));
+    }
+
+    public function find_by_name($name)
+    {
+        // la colonne 'name' est UNIQUE
+        return $this->any(array(
+            'name' => name,
+        ));
+    }
+
 }
