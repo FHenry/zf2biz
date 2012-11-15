@@ -125,6 +125,14 @@ BEGIN
 END;
 
 /*
+ * à chaque fois qu'une photographie est rajoutée, le champs contenant la date de mise la gallerie liée est mis à jour
+ */
+CREATE TRIGGER photo_insert_management AFTER UPDATE ON photo
+BEGIN
+    UPDATE gallery SET updated = datetime('now') WHERE id = old.id_gallery;
+END;
+
+/*
  * Gestion du workflow sur une commande: mise à jour de la date de fermeture au changement de statut open vers wait
  */
 CREATE TRIGGER order_form_update_management_closed AFTER UPDATE OF status ON order_form WHEN old.status='open' AND new.status='wait'
