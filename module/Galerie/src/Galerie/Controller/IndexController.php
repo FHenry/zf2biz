@@ -5,6 +5,9 @@ namespace Galerie\Controller;
 use Zend\Mvc\Controller\AbstractActionController; 
 use Zend\View\Model\ViewModel;
 
+use Galerie\Model\Galerie;
+use Galerie\Form\GalerieForm;
+
 class IndexController extends AbstractActionController 
 {
 
@@ -39,27 +42,71 @@ class IndexController extends AbstractActionController
     } 
 
     public function editAction() 
-    { 
+    {
+        // Création du formulaire
+        $form = new GalerieForm;
+
         // Récupération de l'objet de travail
         $id = $this->params()->fromRoute('id', null);
-        $galerie = $this->_getGalerieTable()->any($id);
+        if (!$id) {
+            $galerie = null;
+        } else {
+            $galerie = $this->_getGalerieTable()->any(array('id' => $id));
+        }
+
+        // Sommes-nous en ajout ou en édition ?
+        if (!$galerie) {
+            // Nous sommes en ajout
+            $form->get('submit')->setValue('Ajouter');
+            // Il faut créer un nouveau objet Galerie
+            $galerie = new Galerie;
+            // Garder cette information pour la vue
+            $is_new = true;
+        } else {
+            // Nous sommes en modification
+            $form->get('submit')->setValue('Modifier');
+            // Il faut préremplir le formulaire avec les données actuelles
+            $form->bind($galerie);
+            // Garder cette information pour la vue
+            $is_new = false;
+        }
 
         // Récupération de l'objet requête
         $request = $this->getRequest();
         if ($request->isPost()) {
-            // Validation des données
+            // Mise en place pour la validation du formulaire
+            $form->setInputFilter($galerie->getInputFilter());
+            $form->setData($request->getPost());
 
-            if (true) {//TODO: Si les données sont valides
+            // Validation des données
+            if ($form->isValid()) {
                 // Sauvegarde des données
-                // $this->_getGalerieTable()->save(?TODO?);
+                $galerie = $form->getData();
+                if ($is_new) {
+                    // Si l'objet n'est pas nouveau, les autres paramètres restent inchangés
+                    // Si l'objet est nouveau, il faut renseigner l'id de l'utilisateur courant
+                    $galerie->id_user = 1; //TODO: Mettre ici le user connecté
+                }
+                $this->_getGalerieTable()->save($galerie);
 
                 // Redirection 
                 return $this->redirect()->toRoute('galerie');
             }
         }
+
+        // On prépare l'affichage du formulaire
+        if ($is_new) {
+            $form->setAttribute('action', $this->url()->fromRoute('galerie/add'));
+        } else {
+            $form->setAttribute('action', $this->url()->fromRoute('galerie/edit', array('id' => $id)));
+        }
+        $form->prepare();
+
+        // On passe la main à la vue
         return new ViewModel(array(
             'id' => $id,
-            'galerie' => $galerie,
+            'form' => $form,
+            'is_new' => $is_new,
         ));
     } 
 

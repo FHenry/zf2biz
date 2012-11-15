@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-07 23:56+0100\n"
-"PO-Revision-Date: 2012-11-07 23:56+0100\n"
+"POT-Creation-Date: 2012-11-15 11:19+0100\n"
+"PO-Revision-Date: 2012-11-15 11:19+0100\n"
 "Last-Translator: Sébastien CHAZALLET <s.chazallet@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -54,6 +54,14 @@ msgstr "Éditer"
 #: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:41
 msgid "Galerie_index_table_lien_del"
 msgstr "Supprimer"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/edit.phtml:2
+msgid "Galerie_add_title"
+msgstr "Ajouter une galerie"
+
+#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/edit.phtml:4
+msgid "Galerie_edit_title"
+msgstr "Modifier une galerie"
 
 #~ msgid "index"
 #~ msgstr "Page d'accueil galerie/back-office"

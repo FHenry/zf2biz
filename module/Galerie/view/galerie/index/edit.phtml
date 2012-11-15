@@ -1,3 +1,14 @@
-<p>vue <em>back-office</em> d&rsquo;une <strong>galerie</strong>&nbsp;: edit</p>
-<form action="/galeries/editer/<?php echo $id; ?>" method="GET"><input type="submit" value="GET" /></form>
-<form action="/galeries/editer/<?php echo $id; ?>" method="POST"><input type="submit" value="POST" /></form>
+<?php if ($is_new): ?>
+<h1><?php echo $this->translate('Galerie_add_title', 'galerie'); ?></h1>
+<?php else: ?>
+<h1><?php echo $this->translate('Galerie_edit_title', 'galerie'); ?></h1>
+<?php endif; ?>
+
+<?php
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('description'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag($form);
+?>
