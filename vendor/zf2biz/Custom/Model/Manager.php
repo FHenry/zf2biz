@@ -89,11 +89,11 @@ abstract class Manager extends AbstractTableGateway
  
     public function save(Entity $entity)
     {
-        if ($this->is_new()) {
+        if ($this->is_new($entity)) {
             $this->insert(
                 $entity->toUpdatableArray()
             );
-        } elseif ($this->getGalerie(extract_primary($entity))) {
+        } elseif ($this->any($this->extract_primary($entity))) {
             $this->update(
                 $entity->toUpdatableArray(),
                 $entity->toPrimaryArray()

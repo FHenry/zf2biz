@@ -4,7 +4,7 @@ namespace Custom\Model;
 class Entity
 {
 
-    public function exchangeArray($data, $overwrite=true)
+    public function exchangeArray($data, $overwrite=false)
     {
         foreach($this->columns as $col) {
             if (array_key_exists($col, $data)) {
