@@ -1,8 +1,18 @@
 <?php
+
 namespace Custom\Model;
 
-class Entity
+
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\InputFilterInterface;
+use Zend\InputFilter\InputFilterAwareInterface;
+
+
+class Entity implements InputFilterAwareInterface
 {
+
+    protected $inputFilter;
 
     public function exchangeArray($data, $overwrite=false)
     {
@@ -16,6 +26,14 @@ class Entity
     }
 
     public function toArray() {
+        $result = array();
+        foreach($this->columns as $col) {
+            $result[$col] = $this->$col;
+        }
+        return $result;
+    }
+
+    public function getArrayCopy() {
         $result = array();
         foreach($this->columns as $col) {
             $result[$col] = $this->$col;
@@ -38,4 +56,39 @@ class Entity
         }
         return $result;
     }
+
+
+
+    public function setInputFilter(InputFilterInterface $inputfilter)
+    {
+        $this->inputFilter = $inputFilter;
+    }
+
+    public function getInputFilter()
+    {
+        if (!$this->inputFilter) {
+            $this->setDefaultInputFilter();
+        }
+        return $this->inputFilter;
+    }
+
+    protected function setDefaultInputFilter()
+    {
+        $inputFilter = new InputFilter;
+        $factory = new InputFactory;
+
+        for ($this->getDefaultInputFilterArrays() as $params) {
+            $inputFilter->add($factory->createInput($params))
+        }
+        $this->inputFilter = $inputFilter;
+
+        return $this->inputFilter;
+
+    }
+
+    protected function getDefaultInputFilterArrays()
+    {
+        return array();
+    }
+
 }
