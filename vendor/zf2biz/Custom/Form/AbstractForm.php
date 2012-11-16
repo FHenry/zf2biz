@@ -8,7 +8,7 @@ use Zend\I18n\Translator\TranslatorAwareInterface;
 use Zend\I18n\Translator\Translator;
 
 
-class AbstractForm extends Form implements TranslatorAwareInterface
+abstract class AbstractForm extends Form implements TranslatorAwareInterface
 {
 
     private $_translator = null;
@@ -32,10 +32,19 @@ class AbstractForm extends Form implements TranslatorAwareInterface
 
 
 
-    protected function addElement($name, $type='text', $label=null, $attributes=array(), $options=array())
+
+    protected function addElements(array $paramsArray)
+    {
+        foreach($paramsArray as $params) {
+            $this->add($params);
+        }
+    }
+
+
+    protected function addElement($name, $type='text', $label=null, array $attributes=array(), array $options=array())
     {
         if ($type) {
-            $attributes['type' = $type
+            $attributes['type'] = $type;
         }
         if ($label) {
             $options['label'] = $label;
