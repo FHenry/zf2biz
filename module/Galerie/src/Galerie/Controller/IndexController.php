@@ -6,13 +6,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 use Galerie\Model\Galerie;
-use Galerie\Form\GalerieForm;
 
 class IndexController extends AbstractActionController 
 {
 
     private $_galerieTable;
     private $_galerieInfoTable;
+    private $_galerieForm;
+
+    private $_translator;
 
 
     private function _getGalerieTable()
@@ -33,6 +35,25 @@ class IndexController extends AbstractActionController
         return $this->_galerieInfoTable;
     }
 
+    private function _getTranslator()
+    {
+        if (!$this->_translator) {
+            $sm = $this->getServiceLocator();
+            $this->_translator = $sm->get('translator');
+        }
+        return $this->_translator;
+    }
+
+    private function _getGalerieForm()
+    {
+        if (!$this->_galerieForm) {
+            $sm = $this->getServiceLocator();
+            $this->_galerieForm = $sm->get('Galerie\Form\GalerieForm');
+        }
+        return $this->_galerieForm;
+    }
+
+
 
     public function indexAction() 
     { 
@@ -44,7 +65,7 @@ class IndexController extends AbstractActionController
     public function editAction() 
     {
         // Création du formulaire
-        $form = new GalerieForm;
+        $form = $this->_getGalerieForm();
 
         // Récupération de l'objet de travail
         $id = $this->params()->fromRoute('id', null);

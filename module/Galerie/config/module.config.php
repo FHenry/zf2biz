@@ -130,6 +130,12 @@ return array(
                 'pattern'  => '%s.mo', 
                 'text_domain'  => 'galerie', 
             ), 
+            array( 
+                'type'     => 'phpArray', 
+                'base_dir' => __DIR__ . '/../language/val', 
+                'pattern'  => 'Zend_Validate_%s.php', 
+                'text_domain'  => 'val', 
+            ), 
         ), 
     ), 
 );

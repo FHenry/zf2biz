@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 11:19+0100\n"
-"PO-Revision-Date: 2012-11-15 11:19+0100\n"
+"POT-Creation-Date: 2012-11-15 16:43+0100\n"
+"PO-Revision-Date: 2012-11-15 16:43+0100\n"
 "Last-Translator: Sébastien CHAZALLET <s.chazallet@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -14,6 +14,14 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/git/zf2biz/galerie/module/Galerie\n"
 "X-Poedit-SearchPath-1: .\n"
+
+#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Form/GalerieForm.php:34
+msgid "Galerie_form_label_name"
+msgstr "Nom de la galerie"
+
+#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Form/GalerieForm.php:43
+msgid "Galerie_form_label_description"
+msgstr "Description de la galerie"
 
 #: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:1
 msgid "Galerie_index_title"

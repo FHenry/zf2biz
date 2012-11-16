@@ -14,6 +14,7 @@ use Zend\Mvc\ModuleRouteListener;
 
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
+use Galerie\Form\GalerieForm;
 
 
 class Module implements
@@ -43,9 +44,10 @@ class Module implements
     }
 
     public function onBootstrap(EventInterface $e)
-    { 
-        $e->getApplication()->getServiceManager()->get('translator'); 
-    } 
+    {
+        $translator = $e->getApplication()->getServiceManager()->get('translator');
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'val');
+    }
 
     public function getServiceConfig()
     {
@@ -60,6 +62,12 @@ class Module implements
                     return new GalerieInfoTable(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
+                },
+                'Galerie\Form\GalerieForm' => function($sm) {
+                    $result = new GalerieForm;
+                    $result->setTranslator($sm->get('translator'), 'galerie');
+                    $result->initialize();
+                    return $result;
                 },
             ),
         );
