@@ -64,8 +64,13 @@ abstract class AbstractForm extends Form implements TranslatorAwareInterface
 
     public function setTranslator(Translator $translator = null, $textDomain = null)
     {
-        $this->_translator = $translator;
-	$this->_textDomain = $textDomain;
+        if ($translator) {
+            $this->_translator = $translator;
+            $this->_translator_enabled = true;
+        }
+        if ($textDomain) {
+            $this->_textDomain = $textDomain;
+        }
     }
 
     public function getTranslator()
@@ -80,7 +85,7 @@ abstract class AbstractForm extends Form implements TranslatorAwareInterface
 
     public function setTranslatorEnabled($enabled = true)
     {
-        $this->_translator_enabled = $enabed;
+        $this->_translator_enabled = $enabled;
     }
 
     public function isTranslatorEnabled()
@@ -90,7 +95,7 @@ abstract class AbstractForm extends Form implements TranslatorAwareInterface
 
     public function setTranslatorTextDomain($textDomain = 'default')
     {
-	$this->_textDomain = $textDomain;
+        $this->_textDomain = $textDomain;
     }
 
     public function getTranslatorTextDomain()
