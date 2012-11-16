@@ -77,8 +77,8 @@ class Entity implements InputFilterAwareInterface
         $inputFilter = new InputFilter;
         $factory = new InputFactory;
 
-        for ($this->getDefaultInputFilterArrays() as $params) {
-            $inputFilter->add($factory->createInput($params))
+        foreach ($this->getDefaultInputFilterArrays() as $params) {
+            $inputFilter->add($factory->createInput($params));
         }
         $this->inputFilter = $inputFilter;
 
