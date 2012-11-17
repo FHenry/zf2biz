@@ -6,11 +6,9 @@
 
 <?php
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formLabel($form->get('name'));
-echo $this->formText($form->get('name'));
-echo $this->formLabel($form->get('description'));
-echo $this->formTextarea($form->get('description'));
-echo $this->formSubmit($form->get('submit'));
+echo $this->formRow($form->get('id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('description'));
+echo $this->formRow($form->get('submit'));
 echo $this->form()->closeTag($form);
 ?>

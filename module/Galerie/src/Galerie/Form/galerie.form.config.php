@@ -18,7 +18,7 @@ return array(
     array(
         'name' => 'description',
         'attributes' => array(
-            'type' => 'text',
+            'type' => 'textarea',
         ),
         'options' => array(
             'label' => $this->translate('Galerie_form_label_description'),
