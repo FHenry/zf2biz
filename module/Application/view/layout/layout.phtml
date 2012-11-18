@@ -43,8 +43,29 @@
             </div>
         </div>
         <div class="container">
+<?php
+    $views = $this->viewModel()->getCurrent()->getChildren();
+    $main_view = $views[0];
+    $variables = $main_view->getVariables();
+?>
+<?php if (isset($variables['infos'])) : ?>
+<?php foreach($main_view->infos as $info): ?>
+    <?php echo $this->format($info, 'info'); ?>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php if (isset($main_view->warnings)) : ?>
+<?php foreach($warnings as $warning): ?>
+    <?php echo $this->format($warning, 'warning'); ?>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php if (isset($main_view->errors)) : ?>
+<?php foreach($errors as $error): ?>
+    <?php echo $this->format($error, 'error'); ?>
+<?php endforeach; ?>
+<?php endif; ?>
+            <hr />
             <?php echo $this->content; ?>
-            <hr>
+            <hr />
             <footer>
                 <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>

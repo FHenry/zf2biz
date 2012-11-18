@@ -4,7 +4,13 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Galerie\Controller\Index' =>
-                'Galerie\Controller\IndexController'
+                'Galerie\Controller\IndexController',
+        ),
+    ),
+    'controller_plugins' => array(
+        'invokables' => array(
+            'MessageGetter' =>
+                'Custom\Mvc\Controller\Plugin\MessageGetter',
         ),
     ),
     'view_manager' => array(

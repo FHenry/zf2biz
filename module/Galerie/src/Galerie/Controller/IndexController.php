@@ -57,10 +57,8 @@ class IndexController extends AbstractActionController
 
 
     public function indexAction() 
-    { 
-        return new ViewModel(array(
-            'messages' => $this->flashMessenger()->getMessages(),
-        )); 
+    {
+        return new ViewModel($this->MessageGetter());
     } 
 
     public function listAction() 
@@ -164,10 +162,12 @@ class IndexController extends AbstractActionController
                 $this->_getGalerieTable()->save($galerie);
 
                 $translator = $this->_getTranslator();
+                $messenger = $this->flashMessenger();
+                $messenger->setNamespace('infos');
                 if ($is_new) {
-                    $this->flashMessenger()->addMessage($translator->translate('Galerie_added', 'galerie'));
+                    $messenger->addMessage($translator->translate('Galerie_added', 'galerie'));
                 } else {
-                    $this->flashMessenger()->addMessage($translator->translate('Galerie_updated', 'galerie'));
+                    $messenger->addMessage($translator->translate('Galerie_updated', 'galerie'));
                 }
                 // Redirection à l'ancienne mode
                 //return $this->redirect()->toRoute('galerie');
