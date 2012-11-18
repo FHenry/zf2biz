@@ -4,6 +4,7 @@ namespace Galerie\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController; 
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 
 use Galerie\Model\Galerie;
 
@@ -57,9 +58,59 @@ class IndexController extends AbstractActionController
 
     public function indexAction() 
     { 
-        return new ViewModel(array(
-            'galeries' => $this->_getGalerieInfoTable()->all(),
-        )); 
+        return new ViewModel(array()); 
+    } 
+
+    public function listAction() 
+    { 
+        // Récupération de l'objet requête
+        $request = $this->getRequest();
+
+        $start = $request->getQuery('iDisplayStart', 0);
+        $length = $request->getQuery('iDisplayLength', 10);
+        $tri = $request->getQuery('iSortCol_0');
+        $senstri = $request->getQuery('sSortDir_0', 'asc');
+        $filtre = $request->getQuery('sSearch');
+
+        // Preparation pour le requêtage
+        $modelManager = $this->_getGalerieInfoTable();
+
+        // Récupération des galeries sous la forme d'un tableau d'entités
+        $galeries = $modelManager->getPartial($start, $length, $tri, $senstri, $filtre);
+
+        // Préparation pour la mise en forme du résultat
+        $action_template = '<a href="%s">%s</a><a href="%s">%s</a><a href="%s">%s</a>';
+        $translator = $this->_getTranslator();
+        $action_voir = $translator->translate('Galerie_index_table_lien_view', 'galerie');
+        $action_editer = $translator->translate('Galerie_index_table_lien_edit', 'galerie');
+        $action_supprimer = $translator->translate('Galerie_index_table_lien_del', 'galerie');
+        $url = $this->url();
+        // Mise en forme du résultat pour que cela corresponde à l'attendu, c'est à dire un tableau de tableaux
+        $result = array();
+        foreach($galeries as $g) {
+            $result[] = array(
+                "<strong>{$g->name}</strong><em>{$g->description}</em>",
+                $g->username,
+                $g->nb,
+                sprintf(
+                    $action_template,
+                    $url->fromRoute('galerie/view', array('id' => $g->id)),
+                    $action_voir,
+                    $url->fromRoute('galerie/edit', array('id' => $g->id)),
+                    $action_editer,
+                    $url->fromRoute('galerie/del', array('id' => $g->id)),
+                    $action_supprimer
+                ),
+            );
+        }
+
+	// Construction du resultat
+        return new JsonModel(array(
+            "sEcho" => $request->getQuery('sEcho', 1),
+            "iTotalRecords" => $modelManager->count_all(),
+            "iTotalDisplayRecords" => count($result),
+            "aaData" => $result,
+        ));
     } 
 
     public function editAction() 

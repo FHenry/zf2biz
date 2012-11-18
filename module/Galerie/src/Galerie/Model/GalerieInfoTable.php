@@ -5,6 +5,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGatewayInterface;
 use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Where;
 
 use Custom\Model\Entity;
 
@@ -40,7 +41,7 @@ class GalerieInfoTable implements TableGatewayInterface
     }
 
 
-    public function select($where = null)
+    public function select($where = null, $order = null, $limit = null, $offset = null)
     {
         $select = $this->sql->select()
             ->columns(array('id', 'name', 'description'))
@@ -62,6 +63,15 @@ class GalerieInfoTable implements TableGatewayInterface
             ));
         if ($where) {
             $select->where($where);
+        }
+        if ($order) {
+            $select->order($order);
+        }
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
         }
 
         // prepare and execute
@@ -119,5 +129,34 @@ class GalerieInfoTable implements TableGatewayInterface
     {
         return $this->select(array('gallery.id_user' => (int) $id_user));
     }
+
+
+
+
+    public function count_all()
+    {
+        $select = $this->sql->select()->columns(array(
+            'nb' => new \Zend\Db\Sql\Expression('count(gallery.id)')
+        ));
+
+        // prepare and execute
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute()->current();
+
+        return $result['nb'];
+    }
+
+    public function getPartial($start, $length, $tri, $senstri, $filtre)
+    {
+        $where = new Where;
+        $where->like('gallery.name', "%{$filtre}%");
+	$where->or;
+        $where->like('gallery.description', "%{$filtre}%"); 
+
+        return $this->select($where, "{$tri} {$senstri}", $length, $start);
+    }
+
+
+
 
 }

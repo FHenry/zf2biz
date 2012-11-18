@@ -21,6 +21,9 @@ return array(
         'template_path_stack' => array(
             'galerie' => __DIR__ . '/../view',
         ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
     ),
     'router' => array(
         'routes' => array(
@@ -37,7 +40,6 @@ return array(
                 'verb' => 'get',
                 'may_terminate' => true,
                 'child_routes' => array(
-
                     'add' => array(
                         'type'    => 'Literal',
                         'options' => array(
@@ -100,6 +102,16 @@ return array(
                         ),
                         'verb' => 'get,post',
                     ),
+                    'list' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/liste',
+                            'defaults' => array(
+                                'action' => 'list',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),/*
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
@@ -111,7 +123,7 @@ return array(
                             'defaults' => array(
                             ),
                         ),
-                    ),
+                    ),*/
                 ),
             ),
         ),
