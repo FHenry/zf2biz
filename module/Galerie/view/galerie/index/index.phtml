@@ -1,5 +1,9 @@
 <h1><?php echo $this->translate('Galerie_index_title', 'galerie'); ?></h1>
 
+<?php foreach($messages as $message): ?>
+    <div class='alert-info'><?php echo $message; ?></div>
+<?php endforeach; ?>
+
 <table id="galeries" class="sorted">
 	<thead>
 		<tr>
