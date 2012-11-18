@@ -161,8 +161,12 @@ class IndexController extends AbstractActionController
                 }
                 $this->_getGalerieTable()->save($galerie);
 
-                // Redirection 
-                return $this->redirect()->toRoute('galerie');
+                // Redirection à l'ancienne mode
+                //return $this->redirect()->toRoute('galerie');
+                // Redirection vers le contrôleur courant
+                //return $this->postRedirectGet();
+                // Redirection vers la page Galerie/Index
+                return $this->postRedirectGet('galerie');
             }
         }
 
