@@ -128,6 +128,16 @@ return array(
                         ),
                         'verb' => 'get',
                     ),
+                    'excel' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/excel',
+                            'defaults' => array(
+                                'action' => 'excel',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
 /*
                     'default' => array(
                         'type'    => 'Segment',

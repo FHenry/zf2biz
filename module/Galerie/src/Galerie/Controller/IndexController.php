@@ -14,6 +14,7 @@ class IndexController extends AbstractActionController
     private $_galerieTable;
     private $_galerieInfoTable;
     private $_galerieForm;
+    private $_galerieInfoExporter;
 
     private $_translator;
 
@@ -54,6 +55,16 @@ class IndexController extends AbstractActionController
         return $this->_galerieForm;
     }
 
+    private function _getGalerieInfoExporter()
+    {
+        if (!$this->_galerieInfoExporter) {
+            $sm = $this->getServiceLocator();
+            $this->_galerieInfoExporter = $sm->get('Galerie\Export\GalerieWorkbook');
+        }
+        return $this->_galerieInfoExporter;
+    }
+
+
 
 
     public function indexAction() 
@@ -76,14 +87,29 @@ class IndexController extends AbstractActionController
         $response = $this->getResponse();
         $response->setStatusCode(200);
 
+        // Modification des entêtes
         $headers = $this->getResponse()->getHeaders();
         $headers->addHeaderLine('Content-Type', 'text/csv; charset=utf-8');
         $headers->addHeaderLine('Content-Disposition', 'attachment; filename="export_galerie.csv"');
 
-
         $response->setContent(implode("\r\n", $content));
+
         return $response;
     }
+
+
+    public function excelAction() {
+        // Récupération des informations brutes
+        $modelManager = $this->_getGalerieInfoTable();
+        $datas = $modelManager->all();
+
+        $exporter = $this->_getGalerieInfoExporter();
+        $exporter->build($datas);
+
+        // Renvoi d'une réponse vide pour désactiver le rendu de la vue
+        return $this->getResponse();
+    }
+
 
     public function listAction() 
     { 

@@ -15,6 +15,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
 use Galerie\Form\GalerieForm;
+use Galerie\Export\GalerieWorkbook;
 
 use Custom\View\Helper\Format;
 
@@ -71,6 +72,9 @@ class Module implements
                     $result->setTranslator($sm->get('translator'), 'galerie');
                     $result->initialize();
                     return $result;
+                },
+                'Galerie\Export\GalerieWorkbook' => function ($sm) {
+                    return new GalerieWorkbook;
                 },
             ),
         );
