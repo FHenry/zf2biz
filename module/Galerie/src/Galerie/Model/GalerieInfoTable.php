@@ -157,6 +157,10 @@ class GalerieInfoTable implements TableGatewayInterface
     }
 
 
+    public function csvHeader()
+    {
+        return "Id;Nom;Description;Propriétaire;Nombre";
+    }
 
 
 }

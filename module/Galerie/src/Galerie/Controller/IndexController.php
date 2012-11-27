@@ -61,6 +61,30 @@ class IndexController extends AbstractActionController
         return new ViewModel($this->MessageGetter());
     } 
 
+    public function csvAction() {
+        // Récupération des informations brutes
+        $modelManager = $this->_getGalerieInfoTable();
+        $datas = $modelManager->all();
+
+        // Mise en forme des résultats
+        $content = array($modelManager->csvHeader());
+        foreach($datas as $d) {
+            $content[] = $d->csvFormat();
+        }
+
+        // Création de la réponse
+        $response = $this->getResponse();
+        $response->setStatusCode(200);
+
+        $headers = $this->getResponse()->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'text/csv; charset=utf-8');
+        $headers->addHeaderLine('Content-Disposition', 'attachment; filename="export_galerie.csv"');
+
+
+        $response->setContent(implode("\r\n", $content));
+        return $response;
+    }
+
     public function listAction() 
     { 
         // Récupération de l'objet requête

@@ -215,3 +215,10 @@ BEGIN
     END;
 END;
 
+CREATE VIEW gallery_info AS
+    SELECT gallery.id, gallery.name, gallery.description, user.firstname || ' ' || user.lastname AS username, count(photo.id) as nb
+    INNER JOIN user ON gallery.id_user = user.id
+    LEFT JOIN photo ON gallery.id = photo.id_gallery
+    GROUP BY user.lastname, user.firstname, gallery.name
+    ORDER BY user.lastname, user.firstname, gallery.name
+;

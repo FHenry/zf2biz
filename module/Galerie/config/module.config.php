@@ -117,7 +117,18 @@ return array(
                             ),
                         ),
                         'verb' => 'get',
-                    ),/*
+                    ),
+                    'csv' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/csv',
+                            'defaults' => array(
+                                'action' => 'csv',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
+/*
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(

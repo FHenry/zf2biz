@@ -27,4 +27,13 @@ class GalerieInfo extends Entity
     protected $primary_columns = array(
     );
 
+    public function csvFormat()
+    {
+        return $this->id
+            . ';' . $this->name
+            . ';' . $this->description
+            . ';' . $this->username
+            . ';' . $this->nb;
+    }
+
 }
