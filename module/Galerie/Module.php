@@ -16,6 +16,7 @@ use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
 use Galerie\Form\GalerieForm;
 use Galerie\Export\GalerieWorkbook;
+use Galerie\Mail\MailSender;
 
 use Custom\View\Helper\Format;
 
@@ -55,6 +56,7 @@ class Module implements
 
     public function getServiceConfig()
     {
+        $config = $this->getConfig();
         return array(
             'factories' => array(
                 'Galerie\Model\GalerieTable' => function($sm) {
@@ -75,6 +77,11 @@ class Module implements
                 },
                 'Galerie\Export\GalerieWorkbook' => function ($sm) {
                     return new GalerieWorkbook;
+                },
+                'Galerie\Mail\MailSender' => function($sm) use ($config) {
+                    $result = new MailSender;
+                    $result::initialize($config['mail']);
+                    return $result;
                 },
             ),
         );

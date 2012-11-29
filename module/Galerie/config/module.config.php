@@ -22,7 +22,9 @@ return array(
             'galerie/index/del' =>
 			__DIR__ . '/../view/galerie/index/del.phtml', 
             'galerie/index/view' =>
-			__DIR__ . '/../view/galerie/index/view.phtml', 
+			__DIR__ . '/../view/galerie/index/view.phtml',  
+            'galerie/mail/test' =>
+			__DIR__ . '/../view/galerie/mail/test.phtml', 
         ), 
         'template_path_stack' => array(
             'galerie' => __DIR__ . '/../view',
@@ -138,6 +140,16 @@ return array(
                         ),
                         'verb' => 'get',
                     ),
+                    'mail' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/mail',
+                            'defaults' => array(
+                                'action' => 'mail',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
 /*
                     'default' => array(
                         'type'    => 'Segment',
@@ -177,4 +189,9 @@ return array(
             ), 
         ), 
     ), 
+    'mail' => array(
+        'name' => 'free',
+        'host' => 'smtp.free.fr',
+        'port' => 25,
+    ),
 );

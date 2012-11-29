@@ -2,9 +2,13 @@
 
 namespace Galerie\Controller; 
 
+
 use Zend\Mvc\Controller\AbstractActionController; 
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
+
+use Zend\View\Renderer\PhpRenderer;
+
 
 use Galerie\Model\Galerie;
 
@@ -15,6 +19,8 @@ class IndexController extends AbstractActionController
     private $_galerieInfoTable;
     private $_galerieForm;
     private $_galerieInfoExporter;
+    private $_galerieMailSender;
+    private $_viewResolver;
 
     private $_translator;
 
@@ -64,6 +70,24 @@ class IndexController extends AbstractActionController
         return $this->_galerieInfoExporter;
     }
 
+    private function _getGalerieMailSender()
+    {
+        if (!$this->_galerieMailSender) {
+            $sm = $this->getServiceLocator();
+            $this->_galerieMailSender = $sm->get('Galerie\Mail\MailSender');
+        }
+        return $this->_galerieMailSender;
+    }
+    
+    private function _getViewResolver()
+    {
+        if (!$this->_viewResolver) {
+            $sm = $this->getServiceLocator();
+            $this->_viewResolver = $sm->get('ViewResolver');
+        }
+        return $this->_viewResolver;
+    }
+
 
 
 
@@ -110,6 +134,33 @@ class IndexController extends AbstractActionController
         return $this->getResponse();
     }
 
+
+    public function mailAction()
+    {
+        //Construction du courriel au format HTML.
+        $mail_viewmodel = new ViewModel(array(
+            'who' => 'World',
+        ));
+        $mail_viewmodel->setTemplate('galerie/mail/test');
+        $renderer = new PhpRenderer;
+        $renderer->setResolver($this->_getViewResolver());
+        $body_html = $renderer->render($mail_viewmodel);
+
+        // Envoi du courriel
+        $mailSender = $this->_getGalerieMailSender();
+        $mailSender->send(
+            's.chazallet@gmail.com', 'Moi',//'sender@example.com', 'Moi',
+            's.chazallet@gmail.com', 'Toi',//'to@example.com', 'Toi',
+            'Test', 'Hello World 4.', $body_html
+        );
+
+        // Création de la réponse
+        $response = $this->getResponse();
+        $response->setStatusCode(200);
+        $response->setContent('Mail Sent.');
+
+        return $response;
+    }
 
     public function listAction() 
     { 
