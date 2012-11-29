@@ -11,6 +11,7 @@ use Zend\View\Renderer\PhpRenderer;
 
 
 use Galerie\Model\Galerie;
+use Galerie\Graph\Test as TestPie;
 
 class IndexController extends AbstractActionController 
 {
@@ -158,6 +159,30 @@ class IndexController extends AbstractActionController
         $response = $this->getResponse();
         $response->setStatusCode(200);
         $response->setContent('Mail Sent.');
+
+        return $response;
+    }
+
+    public function pieAction()
+    {
+        // Accès aux modèles
+        $modelManager = $this->_getGalerieInfoTable();
+        $datas = $modelManager->all();
+
+        // Mise en forme des résultats
+        $nombres = array();
+        $noms = array();
+        foreach($datas as $d) {
+            $nombres[] = $d->nb;
+            $noms[] = $d->name;
+        }
+
+        // Construction (et envoi) du diagramme
+        $pie = new TestPie($nombres, $noms);
+
+        $response = $this->getResponse();
+        $response->setStatusCode(200);
+        $response->setContent('');
 
         return $response;
     }

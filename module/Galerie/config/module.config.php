@@ -150,6 +150,16 @@ return array(
                         ),
                         'verb' => 'get',
                     ),
+                    'pie' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/pie',
+                            'defaults' => array(
+                                'action' => 'pie',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
 /*
                     'default' => array(
                         'type'    => 'Segment',
