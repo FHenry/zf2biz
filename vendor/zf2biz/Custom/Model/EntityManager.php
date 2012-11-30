@@ -5,7 +5,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 
-abstract class Manager extends AbstractTableGateway
+abstract class EntityManager extends AbstractTableGateway
 {
 
     protected $entity;
