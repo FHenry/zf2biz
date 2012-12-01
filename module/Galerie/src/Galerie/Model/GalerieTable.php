@@ -2,10 +2,10 @@
 namespace Galerie\Model;
 
 use Zend\Db\Adapter\Adapter;
-use Custom\Model\Manager;
+use Custom\Model\EntityManager;
 use Custom\Model\Entity;
 
-class GalerieTable extends Manager
+class GalerieTable extends EntityManager
 {
     public $table = 'gallery';
 

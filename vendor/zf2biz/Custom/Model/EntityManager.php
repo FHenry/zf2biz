@@ -98,9 +98,10 @@ abstract class EntityManager extends AbstractTableGateway
                 $entity->toUpdatableArray(),
                 $entity->toPrimaryArray()
             );
+            die("update");
         } else {
             $keys = array();
-            foreach($primary_array as $k => $v) {
+            foreach($this->extract_primary($entity) as $k => $v) {
                 $keys[] = "{$k}: {$v}";
             }
             $keys = implode(', ', $keys);

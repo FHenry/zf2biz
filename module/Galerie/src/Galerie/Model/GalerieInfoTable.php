@@ -6,6 +6,7 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGatewayInterface;
 use Zend\Db\Sql\Sql;
 use Zend\Db\Sql\Where;
+use Zend\Db\Sql\Select;
 
 use Custom\Model\Entity;
 
@@ -50,7 +51,7 @@ class GalerieInfoTable implements TableGatewayInterface
             ))
             ->join('photo', 'gallery.id = photo.id_gallery', array(
                 'nb' => new \Zend\Db\Sql\Expression('count(photo.id)')
-            ))
+            ), Select::JOIN_LEFT)
             ->group(array(
                 'user.lastname',
                 'user.firstname',

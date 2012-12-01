@@ -22,6 +22,7 @@ class IndexController extends AbstractActionController
     private $_galerieInfoExporter;
     private $_galerieMailSender;
     private $_viewResolver;
+    private $_galeriePairTable;
 
     private $_translator;
 
@@ -87,6 +88,15 @@ class IndexController extends AbstractActionController
             $this->_viewResolver = $sm->get('ViewResolver');
         }
         return $this->_viewResolver;
+    }
+
+    private function _getGaleriePairTable()
+    {
+        if (!$this->_galeriePairTable) {
+            $sm = $this->getServiceLocator();
+            $this->_galeriePairTable = $sm->get('Galerie\Model\GaleriePairTable');
+        }
+        return $this->_galeriePairTable;
     }
 
 
@@ -263,11 +273,13 @@ class IndexController extends AbstractActionController
         } else {
             // Nous sommes en modification
             $form->get('submit')->setValue('Modifier');
-            // Il faut préremplir le formulaire avec les données actuelles
-            $form->bind($galerie);
             // Garder cette information pour la vue
             $is_new = false;
         }
+
+
+            // Il faut préremplir le formulaire avec les données actuelles
+            $form->bind($galerie);
 
         // Récupération de l'objet requête
         $request = $this->getRequest();
@@ -331,9 +343,14 @@ class IndexController extends AbstractActionController
     {
         $id = $this->params()->fromRoute('id', null);
         $galerie = $this->_getGalerieInfoTable()->any($id);
+
+        $pairs = $this->_getGaleriePairTable()->all();
+        unset($pairs[$id]);
+
         return new ViewModel(array(
             'id' => $id,
             'galerie' => $galerie,
+            'pairs' => $pairs,
         ));
     } 
 

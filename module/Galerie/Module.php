@@ -19,6 +19,7 @@ use Galerie\Export\GalerieWorkbook;
 use Galerie\Mail\MailSender;
 
 use Custom\View\Helper\Format;
+use Custom\Model\PairManager;
 
 
 class Module implements
@@ -82,6 +83,12 @@ class Module implements
                     $result = new MailSender;
                     $result::initialize($config['mail']);
                     return $result;
+                },
+                'Galerie\Model\GaleriePairTable' => function($sm) {
+                    return new PairManager(
+                        $sm->get('Zend\Db\Adapter\Adapter'),
+                        'gallery'
+                    );
                 },
             ),
         );
