@@ -31,14 +31,3 @@ class Contact implements InputFilterAwareInterface
 
 }
 
-
-
-use Zend\Stdlib\Hydrator;
-$hydrator = new Hydrator\ArraySerializable();
-
-$object = new ArrayObject(array());
-
-$hydrator->hydrate($someData, $object);
-
-// or, if the object has data we want as an array:
-$data = $hydrator->extract($object);
