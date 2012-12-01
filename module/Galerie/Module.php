@@ -11,9 +11,15 @@ use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\EventManager\EventInterface;
 use Zend\Mvc\ModuleRouteListener;
 
+use Zend\Stdlib\Hydrator\ClassMethods as HydratorClassMethods;
+use Zend\Db\ResultSet\HydratingResultSet;
+use Zend\Db\TableGateway\TableGateway;
+
 
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
+use Galerie\Model\Contact;
+
 use Galerie\Form\GalerieForm;
 use Galerie\Export\GalerieWorkbook;
 use Galerie\Mail\MailSender;
@@ -90,6 +96,18 @@ class Module implements
                         'gallery'
                     );
                 },
+                'Galerie\Model\ContactTable' => function($sm) {
+                    return new TableGateway(
+                        'contact',
+                        Zend\Db\TableGateway\TableGateway
+                        null,
+                        new HydratingResultSet(
+                            new HydratorClassMethods,
+                            new Contact
+                        );
+                    );
+                
+                }
             ),
         );
     }
