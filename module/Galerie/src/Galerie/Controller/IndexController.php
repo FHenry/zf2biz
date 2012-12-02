@@ -12,6 +12,7 @@ use Zend\View\Renderer\PhpRenderer;
 use Zend\Session\Container;
 
 use Zend\Feed\Writer\FeedFactory;
+use Zend\Feed\Reader\Reader as FeedReader;
 
 use Galerie\Model\Galerie;
 use Galerie\Graph\Test as TestPie;
@@ -159,7 +160,12 @@ class IndexController extends AbstractActionController
             $entry = $rss->createEntry();
             $entry->setTitle($d->name);
             
-            $entry->setLink($this->url()->fromRoute('galerie/view', array('id' => $d->id)));
+            $entry->setLink($this->url()->fromRoute(
+                'galerie/view',
+                array('id' => $d->id))
+                array('force_canonical' => true)
+            );
+
             $entry->addAuthor(array(
                 'name'  => $d->username,
             ));
@@ -213,6 +219,25 @@ class IndexController extends AbstractActionController
         $response->setContent(implode("\r\n", $content));
 
         return $response;
+    }
+    
+    public function rsscheckAction()
+    {
+        $url = $this->url()->fromRoute('galerie/rss', array(), array('force_canonical' => true));
+        $channel = FeedReader::import($url);
+        $title = $channel->getTitle();
+        $author = $channel->getAuthor();
+        $username = $author['name'];
+        $galeries = array();
+        foreach ($channel as $item) {
+            $galeries[] = "{$item->getTitle()} : {$item->getDescription()}";
+        }
+
+        return new ViewModel(array(
+            'title' => $title,
+            'username' => $username,
+            'galeries' => $galeries,
+        ));
     }
 
 

@@ -24,7 +24,9 @@ return array(
             'galerie/index/view' =>
 			__DIR__ . '/../view/galerie/index/view.phtml',  
             'galerie/mail/test' =>
-			__DIR__ . '/../view/galerie/mail/test.phtml', 
+			__DIR__ . '/../view/galerie/mail/test.phtml',  
+            'galerie/index/rsscheck' =>
+			__DIR__ . '/../view/galerie/index/rsscheck.phtml', 
         ), 
         'template_path_stack' => array(
             'galerie' => __DIR__ . '/../view',
@@ -166,6 +168,16 @@ return array(
                             'route'    => '/rss',
                             'defaults' => array(
                                 'action' => 'rss',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
+                    'rsscheck' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/rsscheck',
+                            'defaults' => array(
+                                'action' => 'rsscheck',
                             ),
                         ),
                         'verb' => 'get',
