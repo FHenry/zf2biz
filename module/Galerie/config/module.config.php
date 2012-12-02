@@ -160,6 +160,16 @@ return array(
                         ),
                         'verb' => 'get',
                     ),
+                    'rss' => array(
+                        'type'    => 'Literal',
+                        'options' => array(
+                            'route'    => '/rss',
+                            'defaults' => array(
+                                'action' => 'rss',
+                            ),
+                        ),
+                        'verb' => 'get',
+                    ),
 /*
                     'default' => array(
                         'type'    => 'Segment',
@@ -203,5 +213,19 @@ return array(
         'name' => 'free',
         'host' => 'smtp.free.fr',
         'port' => 25,
+    ),
+    'rss' => array(
+        'title' => 'Galeries',
+        'description' => 'Liste des galeries disponibles',
+        'link' => 'http://zf2.biz/galeries',
+        'setfeedlink' => array(
+            'link' => 'http://zf2.biz/galeries/rss',
+            'type' => 'rss'
+        ),
+        'author' => array(
+            'name'  => 'Sébastien CHAZALLET',
+            'email' => 'contact@zf2.biz',
+            'uri'   => 'http://zf2.biz',
+        )
     ),
 );

@@ -11,6 +11,8 @@ use Zend\View\Renderer\PhpRenderer;
 
 use Zend\Session\Container;
 
+use Zend\Feed\Writer\FeedFactory;
+
 use Galerie\Model\Galerie;
 use Galerie\Graph\Test as TestPie;
 
@@ -27,6 +29,7 @@ class IndexController extends AbstractActionController
 
     private $_translator;
     private $_log;
+    private $_rss;
 
 
     private function _getGalerieTable()
@@ -43,6 +46,15 @@ class IndexController extends AbstractActionController
         if (!$this->_galerieInfoTable) {
             $sm = $this->getServiceLocator();
             $this->_galerieInfoTable = $sm->get('Galerie\Model\GalerieInfoTable');
+        }
+        return $this->_galerieInfoTable;
+    }
+
+    private function _getGalerieInfoRssTable()
+    {
+        if (!$this->_galerieInfoTable) {
+            $sm = $this->getServiceLocator();
+            $this->_galerieInfoTable = $sm->get('Galerie\Model\GalerieInfoRssTable');
         }
         return $this->_galerieInfoTable;
     }
@@ -110,6 +122,16 @@ class IndexController extends AbstractActionController
         return $this->_log;
     }
 
+    private function _getRss()
+    {
+        if (!$this->_rss) {
+            $sm = $this->getServiceLocator();
+            $config = $sm->get('Config');
+            $this->_rss = FeedFactory::factory($config['rss']);
+        }
+        return $this->_rss;
+    }
+
 
 
 
@@ -123,7 +145,50 @@ class IndexController extends AbstractActionController
             $last = null;
         }
         return new ViewModel(array('last' => $last));
-    } 
+    }
+
+    public function rssAction() {
+        // Récupération des informations brutes
+        $modelManager = $this->_getGalerieInfoRssTable();
+        $datas = $modelManager->all();
+
+        // Création du fil RSS
+        $rss = $this->_getRss();
+        
+        foreach($datas as $d) {
+            $entry = $rss->createEntry();
+            $entry->setTitle($d->name);
+            
+            $entry->setLink($this->url()->fromRoute('galerie/view', array('id' => $d->id)));
+            $entry->addAuthor(array(
+                'name'  => $d->username,
+            ));
+            $date = new \DateTime();
+            $entry->setDateModified(
+                $date->setTimestamp(intval($d->updated))
+            );
+            $entry->setDateCreated(
+                $date->setTimestamp(intval($d->created))
+            );
+            $entry->setDescription($d->description);
+            $entry->setContent("{$d->nb} photos.");
+            $rss->addEntry($entry);
+        }
+
+        //echo '<pre>'; print_r($rss->export('rss')); die('</pre>');
+
+        // Création de la réponse
+        $response = $this->getResponse();
+        $response->setStatusCode(200);
+
+        // Modification des entêtes
+        $headers = $this->getResponse()->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'application/rss+xml; charset=utf-8');
+
+        $response->setContent($rss->export('rss'));
+
+        return $response;
+    }
 
     public function csvAction() {
         // Récupération des informations brutes

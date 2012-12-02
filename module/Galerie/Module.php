@@ -22,6 +22,7 @@ use \Zend\Log\Writer\FirePhp\FirePhpBridge;
 
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
+use Galerie\Model\GalerieInfoRssTable;
 use Galerie\Model\Contact;
 
 use Galerie\Form\GalerieForm;
@@ -78,6 +79,11 @@ class Module implements
                 },
                 'Galerie\Model\GalerieInfoTable' => function($sm) {
                     return new GalerieInfoTable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
+                },
+                'Galerie\Model\GalerieInfoRssTable' => function($sm) {
+                    return new GalerieInfoRssTable(
                         $sm->get('Zend\Db\Adapter\Adapter')
                     );
                 },
