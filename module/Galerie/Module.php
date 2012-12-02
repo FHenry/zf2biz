@@ -17,6 +17,8 @@ use Zend\Db\TableGateway\TableGateway;
 
 use Zend\Log\Logger;
 use Zend\Log\Writer\Stream as LogStream;
+use Zend\Log\Writer\FirePhp as LogFirePhp;
+use \Zend\Log\Writer\FirePhp\FirePhpBridge;
 
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
@@ -29,6 +31,7 @@ use Galerie\Mail\MailSender;
 use Custom\View\Helper\Format;
 use Custom\Model\PairManager;
 
+require_once '/usr/share/php/FirePHPCore/FirePHP.class.php';
 
 class Module implements
     AutoloaderProviderInterface,
@@ -111,8 +114,10 @@ class Module implements
                 },
                 'Zend\Log' => function ($sm) {
                     $log = new Logger();
-                    $writer = new LogStream('/var/git/zf2biz/galerie/data/logs/info.log');
-                    $log->addWriter($writer);
+                    $stream_writer = new LogStream('/var/git/zf2biz/galerie/data/logs/info.log');
+                    $log->addWriter($stream_writer);
+                    $fire_writer = new LogFirePhp(new FirePhpBridge(new \FirePHP()));
+                    $log->addWriter($fire_writer);
                     return $log;
                 },
             ),
