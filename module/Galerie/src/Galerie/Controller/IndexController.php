@@ -26,6 +26,7 @@ class IndexController extends AbstractActionController
     private $_galeriePairTable;
 
     private $_translator;
+    private $_log;
 
 
     private function _getGalerieTable()
@@ -100,11 +101,21 @@ class IndexController extends AbstractActionController
         return $this->_galeriePairTable;
     }
 
+    private function _getLog()
+    {
+        if (!$this->_log) {
+            $sm = $this->getServiceLocator();
+            $this->_log = $sm->get('Zend\Log');
+        }
+        return $this->_log;
+    }
+
 
 
 
     public function indexAction() 
     {
+        $this->_getLog()->info('Acces à la liste des galeries');
         $session = new Container('test');
         if ($session->offsetExists('last')) {
             $last = $email = $session->offsetGet('last');

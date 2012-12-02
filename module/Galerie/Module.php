@@ -15,6 +15,8 @@ use Zend\Stdlib\Hydrator\ClassMethods as HydratorClassMethods;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
+use Zend\Log\Logger;
+use Zend\Log\Writer\Stream as LogStream;
 
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
@@ -106,6 +108,12 @@ class Module implements
                             new Contact
                         )
                     );
+                },
+                'Zend\Log' => function ($sm) {
+                    $log = new Logger();
+                    $writer = new LogStream('/var/git/zf2biz/galerie/data/logs/info.log');
+                    $log->addWriter($writer);
+                    return $log;
                 },
             ),
         );
