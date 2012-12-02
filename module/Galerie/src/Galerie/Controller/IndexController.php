@@ -9,6 +9,7 @@ use Zend\View\Model\JsonModel;
 
 use Zend\View\Renderer\PhpRenderer;
 
+use Zend\Session\Container;
 
 use Galerie\Model\Galerie;
 use Galerie\Graph\Test as TestPie;
@@ -104,7 +105,13 @@ class IndexController extends AbstractActionController
 
     public function indexAction() 
     {
-        return new ViewModel($this->MessageGetter());
+        $session = new Container('test');
+        if ($session->offsetExists('last')) {
+            $last = $email = $session->offsetGet('last');
+        } else {
+            $last = null;
+        }
+        return new ViewModel(array('last' => $last));
     } 
 
     public function csvAction() {
@@ -346,6 +353,9 @@ class IndexController extends AbstractActionController
 
         $pairs = $this->_getGaleriePairTable()->all();
         unset($pairs[$id]);
+
+        $session = new Container('test');
+        $session->offsetSet('last', $id);
 
         return new ViewModel(array(
             'id' => $id,
