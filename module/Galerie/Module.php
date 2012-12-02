@@ -99,15 +99,14 @@ class Module implements
                 'Galerie\Model\ContactTable' => function($sm) {
                     return new TableGateway(
                         'contact',
-                        Zend\Db\TableGateway\TableGateway
+                        Zend\Db\TableGateway\TableGateway,
                         null,
                         new HydratingResultSet(
                             new HydratorClassMethods,
                             new Contact
-                        );
+                        )
                     );
-                
-                }
+                },
             ),
         );
     }
