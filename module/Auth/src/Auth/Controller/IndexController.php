@@ -7,22 +7,15 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
+namespace Auth\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
-    }
-    
-    public function testAction()
-    {
-        return array(
-            'name' => 'test: ajout action',
-        );
+        return array();
     }
 }

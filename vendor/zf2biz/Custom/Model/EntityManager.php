@@ -59,7 +59,7 @@ abstract class EntityManager extends AbstractTableGateway
                 $keys[] = "{$k}: {$v}";
             }
             $keys = implode(', ', $keys);
-            throw new \Exception("cannot get row {{$keys}} in table 'galerie'");
+            throw new \Exception("cannot get row {{$keys}} in table '{$this->table}'");
         }
         return $row;
     }
@@ -104,7 +104,7 @@ abstract class EntityManager extends AbstractTableGateway
                 $keys[] = "{$k}: {$v}";
             }
             $keys = implode(', ', $keys);
-            throw new \Exception("cannot update row {{$keys}} in table 'galerie'");
+            throw new \Exception("cannot update row {{$keys}} in table '{$this->table}'");
         }
     }
 

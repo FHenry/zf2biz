@@ -1,4 +1,4 @@
-Alias /appblanche /var/git/zf2biz/application-blanche/public
+Alias /bookzf2 /var/git/zf2biz/application-blanche/public
 
 <Directory /var/git/zf2biz/application-blanche/public>
 	Order deny,allow
