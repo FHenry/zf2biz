@@ -138,7 +138,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction() 
     {
-        $this->_getLog()->info('Acces à la liste des galeries');
+        //$this->_getLog()->info('Acces à la liste des galeries');
         $session = new Container('test');
         if ($session->offsetExists('last')) {
             $last = $email = $session->offsetGet('last');
@@ -162,7 +162,7 @@ class IndexController extends AbstractActionController
             
             $entry->setLink($this->url()->fromRoute(
                 'galerie/view',
-                array('id' => $d->id))
+                array('id' => $d->id)),
                 array('force_canonical' => true)
             );
 
@@ -368,6 +368,9 @@ class IndexController extends AbstractActionController
             $galerie = null;
         } else {
             $galerie = $this->_getGalerieTable()->any(array('id' => $id));
+            if (!$galerie) {
+                return $this->redirect()->toRoute('galerie');
+            }
         }
 
         // Sommes-nous en ajout ou en édition ?
@@ -451,6 +454,10 @@ class IndexController extends AbstractActionController
     {
         $id = $this->params()->fromRoute('id', null);
         $galerie = $this->_getGalerieInfoTable()->any($id);
+
+        if (!$galerie) {
+            return $this->redirect()->toRoute('galerie');
+        }
 
         $pairs = $this->_getGaleriePairTable()->all();
         unset($pairs[$id]);
