@@ -398,7 +398,7 @@ class IndexController extends AbstractActionController
             // Mise en place pour la validation du formulaire
             $form->setInputFilter($galerie->getInputFilter());
             $form->setData($request->getPost());
-
+          
             // Validation des données
             if ($form->isValid()) {
                 // Sauvegarde des données
@@ -422,11 +422,11 @@ class IndexController extends AbstractActionController
                     $messenger->addMessage($translator->translate('Galerie_updated', 'galerie'));
                 }
                 // Redirection à l'ancienne mode
-                //return $this->redirect()->toRoute('galerie');
+                return $this->redirect()->toRoute('galerie');
                 // Redirection vers le contrôleur courant
                 //return $this->postRedirectGet();
                 // Redirection vers la page Galerie/Index
-                return $this->postRedirectGet('galerie');
+                //return $this->postRedirectGet('galerie');
             }
         }
 
@@ -464,7 +464,6 @@ class IndexController extends AbstractActionController
 
         $pairs = $this->_getGaleriePairTable()->all();
         unset($pairs[$id]);
-        //$pairs = $this->_getGalerieTable()->all();
 
         $session = new Container('test');
         $session->offsetSet('last', $id);
