@@ -64,7 +64,7 @@ class Module implements
     public function onBootstrap(EventInterface $e)
     {
         $translator = $e->getApplication()->getServiceManager()->get('translator');
-        \Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'val');
+       // \Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'val');
     }
 
     public function getServiceConfig()
