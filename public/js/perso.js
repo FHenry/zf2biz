@@ -13,7 +13,7 @@ $(document).ready(function() {
         ],
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "/galeries/liste",
+        "sAjaxSource": "/galerie/galeries/liste",
     });
 });
 

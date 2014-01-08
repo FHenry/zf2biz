@@ -213,12 +213,12 @@ return array(
                 'pattern'  => '%s.mo', 
                 'text_domain'  => 'galerie', 
             ), 
-            array( 
+            /*array( 
                 'type'     => 'phpArray', 
                 'base_dir' => __DIR__ . '/../language/val', 
                 'pattern'  => 'Zend_Validate_%s.php', 
                 'text_domain'  => 'val', 
-            ), 
+            ), */
         ), 
     ), 
     'mail' => array(
@@ -229,9 +229,9 @@ return array(
     'rss' => array(
         'title' => 'Galeries',
         'description' => 'Liste des galeries disponibles',
-        'link' => 'http://zf2.biz/galeries',
+        'link' => 'http://localhost/galerie/galeries',
         'setfeedlink' => array(
-            'link' => 'http://zf2.biz/galeries/rss',
+            'link' => 'http://localhost/galerie/galeries/rss',
             'type' => 'rss'
         ),
         'author' => array(
