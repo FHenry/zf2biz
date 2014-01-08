@@ -10,6 +10,7 @@ class IndexController extends AbstractActionController
 
     private $_galerieArrayTable;
     private $_galerieATable;
+    private $_galerieBTable;
 
     private function _getGalerieArrayTable()
     {
