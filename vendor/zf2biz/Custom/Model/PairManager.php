@@ -40,12 +40,13 @@ class PairManager extends AbstractTableGateway
         // Initialisation du gestionnaire
         $this->initialize();
         $this->featureSet->addFeature(new PairFeature);
+        
     }
 
     public function all()
     {
-        $this->select();
-        return $this->result;
+        return $this->select();
+        //return $this->result;
     }
 
     public function setResult($result)

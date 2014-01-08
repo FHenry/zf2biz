@@ -18,7 +18,7 @@ class PairFeature extends AbstractFeature
             $r = $res->toArray();
             $result[$r['id']] = $r['name'];
         }
-        $this->tableGateway->setResult($result);
+       //$this->tableGateway->setResult($result);
     }
 
 }
