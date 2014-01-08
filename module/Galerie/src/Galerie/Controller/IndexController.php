@@ -464,6 +464,7 @@ class IndexController extends AbstractActionController
 
         $pairs = $this->_getGaleriePairTable()->all();
         unset($pairs[$id]);
+        //$pairs = $this->_getGalerieTable()->all();
 
         $session = new Container('test');
         $session->offsetSet('last', $id);

@@ -11,6 +11,8 @@ use Zend\Db\ResultSet\ResultSetInterface;
 
 class PairFeature extends AbstractFeature
 {
+	public $currentTableGateway;
+	
     public function postSelect(StatementInterface $statement, ResultInterface $result, ResultSetInterface $resultSet)
     {
         $result = array();
@@ -18,7 +20,7 @@ class PairFeature extends AbstractFeature
             $r = $res->toArray();
             $result[$r['id']] = $r['name'];
         }
-       //$this->tableGateway->setResult($result);
+       $this->currentTableGateway->setResult($result);
     }
 
 }
