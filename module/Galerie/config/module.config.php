@@ -37,7 +37,6 @@ return array(
                 'verb' => 'get',
                 'may_terminate' => true,
                 'child_routes' => array(
-
                     'add' => array(
                         'type'    => 'Literal',
                         'options' => array(
