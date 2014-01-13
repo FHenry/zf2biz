@@ -37,7 +37,6 @@ return array(
                 'verb' => 'get',
                 'may_terminate' => true,
                 'child_routes' => array(
-
                     'add' => array(
                         'type'    => 'Literal',
                         'options' => array(
@@ -100,7 +99,7 @@ return array(
                         ),
                         'verb' => 'get,post',
                     ),
-                    'default' => array(
+                   /* 'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
                             'route'    => '/[:controller[/:action]]',
@@ -111,7 +110,7 @@ return array(
                             'defaults' => array(
                             ),
                         ),
-                    ),
+                    ),*/
                 ),
             ),
         ),
@@ -130,7 +129,7 @@ return array(
                 'pattern'  => '%s.mo', 
                 'text_domain'  => 'galerie', 
             ), 
-           /* array( 
+           /*array( 
                 'type'     => 'phpArray', 
                 'base_dir' => __DIR__ . '/../language/val', 
                 'pattern'  => 'Zend_Validate_%s.php', 

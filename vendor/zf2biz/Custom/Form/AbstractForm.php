@@ -19,8 +19,6 @@ abstract class AbstractForm extends Form implements TranslatorAwareInterface
     abstract public function initialize();
 
 
-
-
     public function translate($k)
     {
         if ($this->_translator && $this->_translator_enabled) {
@@ -28,10 +26,6 @@ abstract class AbstractForm extends Form implements TranslatorAwareInterface
         }
         return $k;
     }
-
-
-
-
 
     protected function addElements(array $paramsArray)
     {

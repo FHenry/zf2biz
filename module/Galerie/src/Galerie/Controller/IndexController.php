@@ -49,6 +49,7 @@ class IndexController extends AbstractActionController
         if (!$this->_galerieForm) {
             $sm = $this->getServiceLocator();
             $this->_galerieForm = $sm->get('Galerie\Form\GalerieForm');
+            $this->_galerieForm->setTranslatorTextDomain('galerie');
         }
         return $this->_galerieForm;
     }
