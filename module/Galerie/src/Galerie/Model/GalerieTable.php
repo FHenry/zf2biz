@@ -23,7 +23,7 @@ class GalerieTable extends Manager
 
     protected function is_new(Entity $entity)
     {
-        return $entity->id === null;
+        return empty($entity->id);
     }
 
     protected function extract_primary(Entity $entity)
