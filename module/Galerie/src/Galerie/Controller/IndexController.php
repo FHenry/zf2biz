@@ -117,7 +117,7 @@ class IndexController extends AbstractActionController
     {
         // Création du formulaire
         $form = $this->_getGalerieForm();
-
+		
         // Récupération de l'objet de travail
         $id = $this->params()->fromRoute('id', null);
         if (!$id) {
@@ -131,9 +131,10 @@ class IndexController extends AbstractActionController
             // Nous sommes en ajout
             $form->get('submit')->setValue('Ajouter');
             // Il faut créer un nouveau objet Galerie
-            $galerie = new Galerie;
+            $galerie = new Galerie();
             // Garder cette information pour la vue
             $is_new = true;
+          
         } else {
             // Nous sommes en modification
             $form->get('submit')->setValue('Modifier');
@@ -149,16 +150,19 @@ class IndexController extends AbstractActionController
             // Mise en place pour la validation du formulaire
             $form->setInputFilter($galerie->getInputFilter());
             $form->setData($request->getPost());
-
+           
             // Validation des données
             if ($form->isValid()) {
                 // Sauvegarde des données
-                $galerie = $form->getData();
                 if ($is_new) {
+                	$galerie->exchangeArray($form->getData());
                     // Si l'objet n'est pas nouveau, les autres paramètres restent inchangés
                     // Si l'objet est nouveau, il faut renseigner l'id de l'utilisateur courant
                     $galerie->id_user = 1; //TODO: Mettre ici le user connecté
+                }else {
+                	$galerie = $form->getData();
                 }
+               
                 $this->_getGalerieTable()->save($galerie);
 
                 // Redirection 
