@@ -99,7 +99,7 @@ return array(
                         ),
                         'verb' => 'get,post',
                     ),
-                    'default' => array(
+                   /* 'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
                             'route'    => '/[:controller[/:action]]',
@@ -110,7 +110,7 @@ return array(
                             'defaults' => array(
                             ),
                         ),
-                    ),
+                    ),*/
                 ),
             ),
         ),

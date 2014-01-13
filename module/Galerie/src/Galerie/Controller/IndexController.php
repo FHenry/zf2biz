@@ -81,11 +81,15 @@ class IndexController extends AbstractActionController
             // Validation des données
             if ($form->isValid()) {
                 // Sauvegarde des données
-                $galerie = $form->getData();
+               
                 if ($is_new) {
+                	
+                	$galerie->toUpdatableArray($form->getData());
                     // Si l'objet n'est pas nouveau, les autres paramètres restent inchangés
                     // Si l'objet est nouveau, il faut renseigner l'id de l'utilisateur courant
                     $galerie->id_user = 1; //TODO: Mettre ici le user connecté
+                }else {
+                	$galerie = $form->getData();
                 }
                 $this->_getGalerieTable()->save($galerie);
 
