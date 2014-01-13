@@ -46,7 +46,14 @@ class Module implements
     public function onBootstrap(EventInterface $e)
     {
         $translator = $e->getApplication()->getServiceManager()->get('translator');
-        \Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'val');
+        
+        \Locale::setDefault('fr_FR');
+        $translatorValidator = new \Zend\Mvc\I18n\Translator();
+        $translatorValidator->addTranslationFile(
+        		'phpArray',
+        		'/home/zendformation/workspace/galerie/module/Galerie/language/val/Zend_Validate_fr_FR.php'
+        );
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($translatorValidator);
     }
 
     public function getServiceConfig()

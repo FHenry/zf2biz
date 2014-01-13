@@ -32,4 +32,17 @@ return array(
             'id' => 'submit_galerie_form',
         ),
     ),
+		array(
+				'name' => 'exemple',
+				'type' => 'Zend\Form\Element\Select',
+				'attributes' => array(
+						'type' => 'select',
+						'value' => '0'
+				),
+				'options' => array(
+						'value_options' => array( 0=>$this->translate('Galerie_form_label_name'),
+												  1=>$this->translate('Galerie_form_label_description')	),
+						'label' => $this->translate('exemple Select'),
+				),
+		),
 );
