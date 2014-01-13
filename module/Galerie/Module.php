@@ -74,6 +74,7 @@ class Module implements
                 'Galerie\Form\GalerieForm' => function($sm) {
                     $result = new GalerieForm;
                     $result->setTranslator($sm->get('translator'), 'galerie');
+                    $result->setTranslatorEnabled();
                     $result->initialize();
                     return $result;
                 },
