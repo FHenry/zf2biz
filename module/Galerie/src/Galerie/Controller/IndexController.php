@@ -268,9 +268,9 @@ class IndexController extends AbstractActionController
         // Envoi du courriel
         $mailSender = $this->_getGalerieMailSender();
         $mailSender->send(
-            's.chazallet@gmail.com', 'Moi',//'sender@example.com', 'Moi',
-            's.chazallet@gmail.com', 'Toi',//'to@example.com', 'Toi',
-            'Test', 'Hello World 4.', $body_html
+            'florian.henry@open-concept.pro', 'Moi',//'sender@example.com', 'Moi',
+            'florian.henry@open-concept.pro', 'Toi',//'to@example.com', 'Toi',
+            'Test', 'Hello World 4.', $body_html ,'toto.png'
         );
 
         // Création de la réponse
