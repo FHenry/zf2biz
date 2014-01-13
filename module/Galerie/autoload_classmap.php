@@ -23,4 +23,6 @@ return array(
 		__DIR__ . '/../../vendor/zf2biz/Custom/Model/EntityManager.php',
 	'Custom\Graph\Pie'=>
 		__DIR__ . '/../../vendor/zf2biz/Custom/Graph/Pie.php',
+	'Custom\Export\AbstractWorkbook'=>
+		__DIR__ . '/../../vendor/zf2biz/Custom/Export/AbstractWorkbook.php',
 );
