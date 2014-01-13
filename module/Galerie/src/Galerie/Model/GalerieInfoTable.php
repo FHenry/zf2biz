@@ -150,8 +150,12 @@ class GalerieInfoTable implements TableGatewayInterface
     {
         $where = new Where;
         $where->like('gallery.name', "%{$filtre}%");
-	$where->or;
+		$where->or;
         $where->like('gallery.description', "%{$filtre}%"); 
+        /*$where->or;
+        $where->like('user.lastname', "%{$filtre}%");
+        $where->or;
+        $where->like('user.firstname', "%{$filtre}%");*/
 
         return $this->select($where, "{$tri} {$senstri}", $length, $start);
     }
