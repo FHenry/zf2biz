@@ -21,9 +21,9 @@ namespace Custom\Graph;
  * @see jpgraph
  */
 
-require_once 'jpgraph/jpgraph.php';
-require_once 'jpgraph/jpgraph_pie.php';
-require_once 'jpgraph/jpgraph_pie3d.php';
+require_once 'vendor/jpgraph/src/jpgraph.php';
+require_once 'vendor/jpgraph/src/jpgraph_pie.php';
+require_once 'vendor/jpgraph/src/jpgraph_pie3d.php';
 
 /**
  * Cette classe permet de créer aisément un diagramme.

@@ -384,13 +384,11 @@ class IndexController extends AbstractActionController
         } else {
             // Nous sommes en modification
             $form->get('submit')->setValue('Modifier');
+            // Il faut préremplir le formulaire avec les données actuelles
+            $form->bind($galerie);
             // Garder cette information pour la vue
             $is_new = false;
         }
-
-
-            // Il faut préremplir le formulaire avec les données actuelles
-            $form->bind($galerie);
 
         // Récupération de l'objet requête
         $request = $this->getRequest();
@@ -402,7 +400,6 @@ class IndexController extends AbstractActionController
             // Validation des données
             if ($form->isValid()) {
                 // Sauvegarde des données
-                
                 if ($is_new) {
                 	$galerie->exchangeArray($form->getData());
                     // Si l'objet n'est pas nouveau, les autres paramètres restent inchangés

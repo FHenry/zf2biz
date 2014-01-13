@@ -21,4 +21,6 @@ return array(
 		__DIR__ . '/../../vendor/zf2biz/Custom/Form/AbstractForm.php',
 	'Custom\Model\EntityManager'=>
 		__DIR__ . '/../../vendor/zf2biz/Custom/Model/EntityManager.php',
+	'Custom\Graph\Pie'=>
+		__DIR__ . '/../../vendor/zf2biz/Custom/Graph/Pie.php',
 );
