@@ -47,16 +47,15 @@ class Module implements
     {
         $translator = $e->getApplication()->getServiceManager()->get('translator');
         
+        //\Locale::setDefault('fr_FR');
         $translatorValidator = new \Zend\Mvc\I18n\Translator();
         $translatorValidator->addTranslationFile(
         		'phpArray',
-        		'language/val/Zend_Validate_%s.php',
-        		'default',
+        		'/language/val/Zend_Validate_%s.php',
+        		'val',
         		'fr_FR'
         );
-        
-        \Zend\Validator\AbstractValidator::setDefaultTranslator($translatorValidator,
-        		'val');
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($translatorValidator);
        // \Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'val');
     }
 

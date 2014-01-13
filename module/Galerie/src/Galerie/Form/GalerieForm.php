@@ -68,7 +68,7 @@ class GalerieForm extends Form implements TranslatorAwareInterface
     public function setTranslator(Translator $translator = null, $textDomain = null)
     {
         $this->_translator = $translator;
-	$this->_textDomain = $textDomain;
+		$this->_textDomain = $textDomain;
     }
 
     public function getTranslator()
@@ -93,7 +93,7 @@ class GalerieForm extends Form implements TranslatorAwareInterface
 
     public function setTranslatorTextDomain($textDomain = 'default')
     {
-	$this->_textDomain = $textDomain;
+		$this->_textDomain = $textDomain;
     }
 
     public function getTranslatorTextDomain()
