@@ -29,6 +29,7 @@ class GalerieForm extends Form implements TranslatorAwareInterface
             'name' => 'name',
             'attributes' => array(
                 'type' => 'text',
+            	'maxlength' => 32,
             ),
             'options' => array(
                 'label' => $this->translate('Galerie_form_label_name'),
