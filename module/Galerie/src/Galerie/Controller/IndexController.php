@@ -145,7 +145,7 @@ class IndexController extends AbstractActionController
         } else {
             $last = null;
         }
-        return new ViewModel(array('last' => $last, $this->MessageGetter()));
+        return new ViewModel(array('last' => $last));
     }
 
     public function rssAction() {
@@ -318,7 +318,7 @@ class IndexController extends AbstractActionController
 
         // Preparation pour le requêtage
         $modelManager = $this->_getGalerieInfoTable();
-        $modelManager->logger=$this->_getLog();
+        //$modelManager->logger=$this->_getLog();
 
         // Récupération des galeries sous la forme d'un tableau d'entités
         $galeries = $modelManager->getPartial($start, $length, $tri, $senstri, $filtre);
@@ -400,6 +400,7 @@ class IndexController extends AbstractActionController
 
             // Validation des données
             if ($form->isValid()) {
+               
                 // Sauvegarde des données
                 if ($is_new) {
                 	$galerie->exchangeArray($form->getData());
@@ -409,7 +410,7 @@ class IndexController extends AbstractActionController
                 } else {
                 	$galerie = $form->getData();
                 }
-                $this->_getGalerieTable()->save($galerie);
+                $this->_getGalerieTable()->save($galerie);               
                 $translator = $this->_getTranslator();
                 $messenger = $this->flashMessenger();
                 $messenger->setNamespace('infos');
@@ -418,7 +419,7 @@ class IndexController extends AbstractActionController
                 } else {
                     $messenger->addMessage($translator->translate('Galerie_updated', 'galerie'));
                 }
-
+         
                 // Redirection à l'ancienne mode
                 //return $this->redirect()->toRoute('galerie');
                 // Redirection vers le contrôleur courant
@@ -448,7 +449,6 @@ class IndexController extends AbstractActionController
             'id' => $id,
             'form' => $form,
             'is_new' => $is_new,
-            $this->MessageGetter()
         ));
     } 
 
