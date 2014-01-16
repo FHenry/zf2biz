@@ -16,7 +16,7 @@ class GalerieInfoTable implements TableGatewayInterface
     protected $adapter;
     protected $resultSetPrototype;
     protected $sql;
-    public      $logger;
+    public    $logger;
 
     public function __construct(Adapter $adapter) {
         // Gestion de l'adaptateur
@@ -80,7 +80,9 @@ class GalerieInfoTable implements TableGatewayInterface
 
         // prepare and execute
         $statement = $this->sql->prepareStatementForSqlObject($select);
-        //$this->logger->info($statement->getSql());
+        if(is_object($this->logger)) {
+            $this->logger->info($statement->getSql());
+        }
         $result = $statement->execute();
 
         // build result set
@@ -155,7 +157,7 @@ class GalerieInfoTable implements TableGatewayInterface
     {
         $where = new Where;
         $where->like('gallery.name', "%{$filtre}%");
-	$where->or;
+	    $where->or;
         $where->like('gallery.description', "%{$filtre}%"); 
     
            //$galerie = new GalerieInfo();

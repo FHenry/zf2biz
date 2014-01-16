@@ -318,7 +318,7 @@ class IndexController extends AbstractActionController
 
         // Preparation pour le requêtage
         $modelManager = $this->_getGalerieInfoTable();
-        //$modelManager->logger=$this->_getLog();
+        $modelManager->logger=$this->_getLog();
 
         // Récupération des galeries sous la forme d'un tableau d'entités
         $galeries = $modelManager->getPartial($start, $length, $tri, $senstri, $filtre);
