@@ -54,6 +54,8 @@ class Module implements
         		'/home/zendformation/workspace/galerie/module/Galerie/language/val/Zend_Validate_fr_FR.php'
         );
         \Zend\Validator\AbstractValidator::setDefaultTranslator($translatorValidator);
+        
+        
     }
 
     public function getServiceConfig()
