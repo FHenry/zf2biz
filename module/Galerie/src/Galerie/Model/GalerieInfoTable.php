@@ -50,7 +50,7 @@ class GalerieInfoTable implements TableGatewayInterface
             ))
             ->join('photo', 'gallery.id = photo.id_gallery', array(
                 'nb' => new \Zend\Db\Sql\Expression('count(photo.id)')
-            ))
+            ), \Zend\Db\Sql\Select::JOIN_LEFT)
             ->group(array(
                 'user.lastname',
                 'user.firstname',
