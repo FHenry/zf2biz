@@ -40,7 +40,6 @@ class GalerieInfoTable implements TableGatewayInterface
         return 'gallery'; // Table centrale de la requête
     }
 
-
     public function select($where = null, $order = null, $limit = null, $offset = null)
     {
         $select = $this->sql->select()
@@ -50,7 +49,7 @@ class GalerieInfoTable implements TableGatewayInterface
             ))
             ->join('photo', 'gallery.id = photo.id_gallery', array(
                 'nb' => new \Zend\Db\Sql\Expression('count(photo.id)')
-            ))
+            ),)
             ->group(array(
                 'user.lastname',
                 'user.firstname',
@@ -152,11 +151,10 @@ class GalerieInfoTable implements TableGatewayInterface
         $where->like('gallery.name', "%{$filtre}%");
 		$where->or;
         $where->like('gallery.description', "%{$filtre}%"); 
-        /*$where->or;
-        $where->like('user.lastname', "%{$filtre}%");
         $where->or;
-        $where->like('user.firstname', "%{$filtre}%");*/
-
+        $where->like('user.firstname', "%{$filtre}%");
+        $where->or;
+        $where->like('user.lastname', "%{$filtre}%");
         return $this->select($where, "{$tri} {$senstri}", $length, $start);
     }
 

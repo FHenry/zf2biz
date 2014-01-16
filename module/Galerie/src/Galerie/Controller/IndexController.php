@@ -89,7 +89,8 @@ class IndexController extends AbstractActionController
         $result = array();
         foreach($galeries as $g) {
             $result[] = array(
-                "<strong>{$g->name}</strong><em>{$g->description}</em>",
+                "<strong>{$g->name}</strong>",
+                "<em>{$g->description}</em>",
                 $g->username,
                 $g->nb,
                 sprintf(
