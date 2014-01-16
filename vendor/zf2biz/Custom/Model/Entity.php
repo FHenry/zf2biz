@@ -90,5 +90,9 @@ class Entity implements InputFilterAwareInterface
     {
         return array();
     }
+    
+    public function getColumns() {
+        return $this->columns;
+    }
 
 }

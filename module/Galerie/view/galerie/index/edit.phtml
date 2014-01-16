@@ -12,6 +12,9 @@
     <span style="width: 250px; margin-left: 12px;">
         <?php echo $this->formText($form->get('name')); ?>
     </span>
+    <span style="width: 250px; margin-left: 12px;">
+        <?php echo $this->formElementErrors($form->get('name')); ?>
+    </span>
 </div>
 <div style="overflow: hidden; width: 100%;">
     <span style="float: left; width: 150px; text-align: right; font-weight: bold; cursor: pointer;">
@@ -19,6 +22,9 @@
     </span>
     <span style="width: 250px; margin-left: 12px;">
         <?php echo $this->formText($form->get('description')); ?>
+    </span>
+        <span style="width: 250px; margin-left: 12px;">
+        <?php echo $this->formElementErrors($form->get('description')); ?>
     </span>
 </div>
 <div style="overflow: hidden; width: 100%;">

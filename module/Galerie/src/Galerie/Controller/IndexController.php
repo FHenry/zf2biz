@@ -138,14 +138,14 @@ class IndexController extends AbstractActionController
 
     public function indexAction() 
     {
-        //$this->_getLog()->info('Acces à la liste des galeries');
-        $session = new Container('test');
+        $this->_getLog()->info('Acces à la liste des galeries');
+        $session = new Container('lastview');
         if ($session->offsetExists('last')) {
-            $last = $email = $session->offsetGet('last');
+            $last = $session->offsetGet('last');
         } else {
             $last = null;
         }
-        return new ViewModel(array('last' => $last));
+        return new ViewModel(array('last' => $last, $this->MessageGetter()));
     }
 
     public function rssAction() {
@@ -318,6 +318,7 @@ class IndexController extends AbstractActionController
 
         // Preparation pour le requêtage
         $modelManager = $this->_getGalerieInfoTable();
+        $modelManager->logger=$this->_getLog();
 
         // Récupération des galeries sous la forme d'un tableau d'entités
         $galeries = $modelManager->getPartial($start, $length, $tri, $senstri, $filtre);
@@ -409,7 +410,6 @@ class IndexController extends AbstractActionController
                 	$galerie = $form->getData();
                 }
                 $this->_getGalerieTable()->save($galerie);
-
                 $translator = $this->_getTranslator();
                 $messenger = $this->flashMessenger();
                 $messenger->setNamespace('infos');
@@ -418,12 +418,17 @@ class IndexController extends AbstractActionController
                 } else {
                     $messenger->addMessage($translator->translate('Galerie_updated', 'galerie'));
                 }
+
                 // Redirection à l'ancienne mode
                 //return $this->redirect()->toRoute('galerie');
                 // Redirection vers le contrôleur courant
                 //return $this->postRedirectGet();
                 // Redirection vers la page Galerie/Index
                 return $this->postRedirectGet('galerie');
+            }else {
+                $messenger = $this->flashMessenger();
+                $messenger->setNamespace('errors');
+                $messenger->addMessage('ERROR');
             }
         }
 
@@ -434,12 +439,16 @@ class IndexController extends AbstractActionController
             $form->setAttribute('action', $this->url()->fromRoute('galerie/edit', array('id' => $id)));
         }
         $form->prepare();
+        
+        $session = new Container('lastview');
+        $session->offsetSet('last', $galerie->id);
 
         // On passe la main à la vue
         return new ViewModel(array(
             'id' => $id,
             'form' => $form,
             'is_new' => $is_new,
+            $this->MessageGetter()
         ));
     } 
 
@@ -462,7 +471,7 @@ class IndexController extends AbstractActionController
         $pairs = $this->_getGaleriePairTable()->all();
         unset($pairs[$id]);
 
-        $session = new Container('test');
+        $session = new Container('lastview');
         $session->offsetSet('last', $id);
 
         return new ViewModel(array(

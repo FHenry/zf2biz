@@ -16,6 +16,7 @@ class GalerieInfoTable implements TableGatewayInterface
     protected $adapter;
     protected $resultSetPrototype;
     protected $sql;
+    public      $logger;
 
     public function __construct(Adapter $adapter) {
         // Gestion de l'adaptateur
@@ -56,17 +57,19 @@ class GalerieInfoTable implements TableGatewayInterface
                 'user.lastname',
                 'user.firstname',
                 'gallery.name'
-            ))
-            ->order(array(
-                'user.lastname',
-                'user.firstname',
-                'gallery.name'
             ));
+            
         if ($where) {
             $select->where($where);
         }
         if ($order) {
             $select->order($order);
+        } else {
+            $select->order(array(
+                'user.lastname',
+                'user.firstname',
+                'gallery.name'
+            ));
         }
         if ($limit) {
             $select->limit($limit);
@@ -77,6 +80,7 @@ class GalerieInfoTable implements TableGatewayInterface
 
         // prepare and execute
         $statement = $this->sql->prepareStatementForSqlObject($select);
+        //$this->logger->info($statement->getSql());
         $result = $statement->execute();
 
         // build result set
@@ -153,7 +157,10 @@ class GalerieInfoTable implements TableGatewayInterface
         $where->like('gallery.name', "%{$filtre}%");
 	$where->or;
         $where->like('gallery.description', "%{$filtre}%"); 
-
+    
+           //$galerie = new GalerieInfo();
+        //{$galerie->getColumns()[$tri]}
+        
         return $this->select($where, "{$tri} {$senstri}", $length, $start);
     }
 

@@ -1,6 +1,23 @@
-2012-12-02T10:51:15+01:00 INFO (6): Acces à la liste des galeries
-2012-12-02T10:52:53+01:00 INFO (6): Acces à la liste des galeries
-2012-12-02T11:04:48+01:00 INFO (6): Acces à la liste des galeries
-2012-12-02T11:05:32+01:00 INFO (6): Acces à la liste des galeries
-2012-12-02T11:19:32+01:00 INFO (6): Acces à la liste des galeries
-2012-12-02T11:21:07+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:39:36+01:00 INFO (6): SELECT "gallery"."id" AS "id", "gallery"."name" AS "name", "gallery"."description" AS "description", user.firstname || ' ' || user.lastname AS "username", count(photo.id) AS "nb" FROM "gallery" INNER JOIN "user" ON "gallery"."id_user" = "user"."id" LEFT JOIN "photo" ON "gallery"."id" = "photo"."id_gallery" WHERE "gallery"."name" LIKE :where1 OR "gallery"."description" LIKE :where2 GROUP BY "user"."lastname", "user"."firstname", "gallery"."name" ORDER BY "0" ASC LIMIT :limit
+2014-01-16T16:40:16+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:40:16+01:00 INFO (6): SELECT "gallery"."id" AS "id", "gallery"."name" AS "name", "gallery"."description" AS "description", user.firstname || ' ' || user.lastname AS "username", count(photo.id) AS "nb" FROM "gallery" INNER JOIN "user" ON "gallery"."id_user" = "user"."id" LEFT JOIN "photo" ON "gallery"."id" = "photo"."id_gallery" WHERE "gallery"."name" LIKE :where1 OR "gallery"."description" LIKE :where2 GROUP BY "user"."lastname", "user"."firstname", "gallery"."name" ORDER BY "0" ASC LIMIT :limit
+2014-01-16T16:40:25+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:40:25+01:00 INFO (6): SELECT "gallery"."id" AS "id", "gallery"."name" AS "name", "gallery"."description" AS "description", user.firstname || ' ' || user.lastname AS "username", count(photo.id) AS "nb" FROM "gallery" INNER JOIN "user" ON "gallery"."id_user" = "user"."id" LEFT JOIN "photo" ON "gallery"."id" = "photo"."id_gallery" WHERE "gallery"."name" LIKE :where1 OR "gallery"."description" LIKE :where2 GROUP BY "user"."lastname", "user"."firstname", "gallery"."name" ORDER BY "0" ASC LIMIT :limit
+2014-01-16T16:41:03+01:00 INFO (6): SELECT "gallery"."id" AS "id", "gallery"."name" AS "name", "gallery"."description" AS "description", user.firstname || ' ' || user.lastname AS "username", count(photo.id) AS "nb" FROM "gallery" INNER JOIN "user" ON "gallery"."id_user" = "user"."id" LEFT JOIN "photo" ON "gallery"."id" = "photo"."id_gallery" WHERE "gallery"."name" LIKE :where1 OR "gallery"."description" LIKE :where2 GROUP BY "user"."lastname", "user"."firstname", "gallery"."name" ORDER BY "1" ASC LIMIT :limit
+2014-01-16T16:47:34+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:47:34+01:00 INFO (6): SELECT "gallery"."id" AS "id", "gallery"."name" AS "name", "gallery"."description" AS "description", user.firstname || ' ' || user.lastname AS "username", count(photo.id) AS "nb" FROM "gallery" INNER JOIN "user" ON "gallery"."id_user" = "user"."id" LEFT JOIN "photo" ON "gallery"."id" = "photo"."id_gallery" WHERE "gallery"."name" LIKE :where1 OR "gallery"."description" LIKE :where2 GROUP BY "user"."lastname", "user"."firstname", "gallery"."name" ORDER BY "0" ASC LIMIT :limit
+2014-01-16T16:47:43+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:48:39+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T16:50:10+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:20:09+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:20:18+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:20:28+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:22:17+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:23:17+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:24:10+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:24:15+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:24:19+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:24:26+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:25:04+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:29:01+01:00 INFO (6): Acces à la liste des galeries
+2014-01-16T17:29:35+01:00 INFO (6): Acces à la liste des galeries

@@ -10,7 +10,7 @@
 <h2>Accès direct aux autres galeries</h2>
 <ul>
 <?php foreach($pairs as $id => $name): ?>
-<li><a href="http://localhost/galerie/galeries/voir/<?php echo $id; ?>"><?php echo $name; ?></a></li>
+<li><a href="<?php echo $this->url('galerie/view', array('id'=>$id)); ?>"><?php echo $name; ?></a></li>
 <?php endforeach; ?>
 </ul>
 

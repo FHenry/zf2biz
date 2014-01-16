@@ -9,7 +9,6 @@ class PairManager extends AbstractTableGateway
 {
 
     protected $pair;
-
     protected $result;
 
     public function __construct(

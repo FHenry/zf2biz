@@ -128,7 +128,7 @@ class Module implements
                 },
                 'Zend\Log' => function ($sm) {
                     $log = new Logger();
-                    $stream_writer = new LogStream('/var/git/zf2biz/galerie/data/logs/info.log');
+                    $stream_writer = new LogStream('/home/zendformation/workspace/galerie/data/logs/info.log');
                     $log->addWriter($stream_writer);
                     $fire_writer = new LogFirePhp(new FirePhpBridge(new \FirePHP()));
                     $log->addWriter($fire_writer);
