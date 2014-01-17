@@ -145,7 +145,14 @@ class IndexController extends AbstractActionController
         } else {
             $last = null;
         }
-        return new ViewModel(array('last' => $last));
+        
+        $messenger = $this->flashMessenger();
+        $messenger->setNamespace('infos');
+        $messenger->addMessage('Ceci est un test');
+        
+        $varView  = array_merge($this->MessageGetter(), array('last' => $last));
+        
+        return new ViewModel($varView);
     }
 
     public function rssAction() {
@@ -429,7 +436,7 @@ class IndexController extends AbstractActionController
             }else {
                 $messenger = $this->flashMessenger();
                 $messenger->setNamespace('errors');
-                $messenger->addMessage('ERROR');
+                $messenger->addMessage('Il y a une/des erreur(s) dans le formulaire, verifiez les messages');
             }
         }
 
@@ -444,12 +451,15 @@ class IndexController extends AbstractActionController
         $session = new Container('lastview');
         $session->offsetSet('last', $galerie->id);
 
-        // On passe la main à la vue
-        return new ViewModel(array(
+        $varView  = array_merge($this->MessageGetter(), array(
             'id' => $id,
             'form' => $form,
             'is_new' => $is_new,
         ));
+        
+        
+        // On passe la main à la vue
+        return new ViewModel($varView);
     } 
 
     public function delAction() 
@@ -469,7 +479,7 @@ class IndexController extends AbstractActionController
         }
 
         $pairs = $this->_getGaleriePairTable()->all();
-        unset($pairs[$id]);
+        unset($pairs[$id]); // Pour ne pas afficher la galeire courante dans le nav
 
         $session = new Container('lastview');
         $session->offsetSet('last', $id);

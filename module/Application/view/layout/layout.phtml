@@ -53,13 +53,13 @@
     <?php echo $this->format($info, 'info'); ?>
 <?php endforeach; ?>
 <?php endif; ?>
-<?php if (isset($main_view->warnings)) : ?>
-<?php foreach($warnings as $warning): ?>
+<?php if (isset($variables['warnings'])) : ?>
+<?php foreach($main_view->warnings as $warning): ?>
     <?php echo $this->format($warning, 'warning'); ?>
 <?php endforeach; ?>
 <?php endif; ?>
-<?php if (isset($main_view->errors)) : ?>
-<?php foreach($errors as $error): ?>
+<?php if (isset($variables['errors'])) : ?>
+<?php foreach($main_view->errors as $error): ?>
     <?php echo $this->format($error, 'error'); ?>
 <?php endforeach; ?>
 <?php endif; ?>
