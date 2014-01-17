@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'Application',
-        'Auth',
+        'SanAuth',
         'Galerie',
     ),
     'module_listener_options' => array(

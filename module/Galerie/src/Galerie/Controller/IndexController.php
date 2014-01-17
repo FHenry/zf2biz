@@ -305,6 +305,7 @@ class IndexController extends AbstractActionController
 
     public function mailAction()
     {
+        
         //Construction du courriel au format HTML.
         $mail_viewmodel = new ViewModel(array(
             'who' => 'World',
