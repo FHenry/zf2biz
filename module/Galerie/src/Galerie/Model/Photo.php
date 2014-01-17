@@ -30,7 +30,9 @@ class Photo extends Entity
     protected $updatable_columns = array(
         'id_gallery',
         'name',
+        'filename',
         'description',
+        'extension',
     );
 
     protected $primary_columns = array(

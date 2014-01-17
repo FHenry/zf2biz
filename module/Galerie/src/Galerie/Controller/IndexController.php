@@ -15,6 +15,7 @@ use Zend\Feed\Writer\FeedFactory;
 use Zend\Feed\Reader\Reader as FeedReader;
 
 use Galerie\Model\Galerie;
+use Galerie\Model\Photo;
 
 class IndexController extends AbstractActionController 
 {
@@ -475,13 +476,12 @@ class IndexController extends AbstractActionController
                 } else {
                 	$galerie = $form->getData();
                 	$fileArr = $this->params()->fromFiles('fileUpload');
-                	//var_dump($fileArr);exit;
+                	
                 	
                 	$adapter = new \Zend\File\Transfer\Adapter\Http();
-                	// $size = new \Zend\Validator\File\Size(array('min' => 1 )); // minimum bytes filesize, max too..
-                	// $extension = new \Zend\Validator\File\Extension(array('extension' => array('jpg', 'txt')));
-                	//$adapter->setValidators(array($size, $extension), $fileArr['name']);
-                	$adapter->setValidators(array(), $fileArr[0]['name']);
+                    $size = new \Zend\Validator\File\Size(array('min' => 1 )); // minimum bytes filesize, max too..
+                	$extension = new \Zend\Validator\File\Extension(array('extension' => array('jpg', 'png')));
+                	$adapter->setValidators(array($size, $extension), $fileArr[0]['name']);
                 	/**
                 	 * Valid Upload
                 	*/
@@ -489,7 +489,13 @@ class IndexController extends AbstractActionController
                 	    $adapter->setDestination(realpath('./data/images/'.$galerie->id.'/'));
                 	    if($adapter->receive($fileArr[0]['name'])) {
                 	        $filename = $adapter->getFileName();
-                	        // Do something.. dans la base
+                	        $photo = new Photo();
+                	        $photo->filename=reset(explode('.', $fileArr[0]['name']));
+                	        $photo->id_gallery=$galerie->id;
+                	        $photo->name=$fileArr[0]['name'];
+                	        $photo->description=$fileArr[0]['name'];
+                	        $photo->extension=end(explode('.', $fileArr[0]['name']));
+                	        $this->_getPhotoTable()->save($photo);
                 	    }
                 	}
                 	
