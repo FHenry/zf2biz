@@ -28,9 +28,12 @@ use Galerie\Model\Contact;
 use Galerie\Form\GalerieForm;
 use Galerie\Export\GalerieWorkbook;
 use Galerie\Mail\MailSender;
+use Galerie\Graph\MyPie;
+
 
 use Custom\View\Helper\Format;
 use Custom\Model\PairManager;
+
 
 require_once '/usr/share/php/FirePHPCore/FirePHP.class.php';
 
@@ -133,6 +136,11 @@ class Module implements
                     $fire_writer = new LogFirePhp(new FirePhpBridge(new \FirePHP()));
                     $log->addWriter($fire_writer);
                     return $log;
+                },
+                'Galerie\Graph\MyPie' => function($sm) {
+                    $result = new MyPie;
+                    $result->setTranslator($sm->get('translator'), 'galerie');
+                    return $result;
                 },
             ),
         );

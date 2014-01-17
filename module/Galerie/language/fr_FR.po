@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-17 09:59+0100\n"
-"PO-Revision-Date: 2014-01-17 09:59+0100\n"
+"POT-Creation-Date: 2014-01-17 11:14+0100\n"
+"PO-Revision-Date: 2014-01-17 11:14+0100\n"
 "Last-Translator: formation <formation@zendframewrok.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -23,29 +23,33 @@ msgstr "Nom de la galerie"
 msgid "Galerie_form_label_description"
 msgstr "Description de la galerie"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:336
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:347
 msgid "Galerie_index_table_lien_view"
 msgstr "Voir"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:337
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:348
 msgid "Galerie_index_table_lien_edit"
 msgstr "Éditer"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:338
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:349
 msgid "Galerie_index_table_lien_del"
 msgstr "Supprimer"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:425
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:436
 msgid "Galerie_added"
 msgstr "La nouvelle galerie a bien été ajoutée"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:427
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:438
 msgid "Galerie_updated"
 msgstr "La galerie a bien été modifiée"
 
-#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:440
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:451
 msgid "Galerie_form_error"
 msgstr "Il y a une/des erreur(s) dans le formulaire, vérifiez les messages"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Graph/MyPie.php:73
+msgid "nb_photo"
+msgstr "photo(s)"
 
 #: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/edit.phtml:2
 #: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:6

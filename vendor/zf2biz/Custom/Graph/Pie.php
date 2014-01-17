@@ -56,7 +56,7 @@ class Pie
      * Données affichées par le diagramme de gantt
      * @var array
      */
-    protected $datas = array();
+    protected  $datas = array();
 
     /**
      * Titre du graphique, si la méthode getTitle n'est pas surchargée
@@ -97,11 +97,19 @@ class Pie
      *
      * @return null
      */
-    public function __construct ($datas, $legends)
+    public function __construct ()
+    {
+        /*$this->datas = $datas;
+        $this->legends = $legends;*/
+
+        //$this->createDiagram();
+    }
+    
+    public function render ($datas, $legends)
     {
         $this->datas = $datas;
-        $this->legends = $legends;
-
+         $this->legends = $legends;
+    
         $this->createDiagram();
     }
 

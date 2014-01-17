@@ -19,6 +19,8 @@
 namespace Galerie\Graph;
 
 use Custom\Graph\Pie;
+use Zend\I18n\Translator\TranslatorAwareInterface;
+use Zend\I18n\Translator\Translator;
 
 /**
  * Cette vue peut écrire dans une image pour générer un diagramme de Gantt.
@@ -33,10 +35,12 @@ use Custom\Graph\Pie;
  * @since     0.0.0.alpha1
  *
  */
-class Test extends Pie
+class MyPie extends Pie
 {
 
     protected $title = "Nombre de photos par galerie";
+    private $_translator = null;
+    private $_translator_enabled = true;
 
     /**
      * On surcharge cette propriété afin d'avoir un graphique 3D
@@ -66,7 +70,18 @@ class Test extends Pie
      */
     public function getFormat()
     {
-        return '%d photos';
+        return '%d ' . $this->_translator->translate('nb_photo', 'galerie');
+    }
+    
+    public function setTranslator(Translator $translator = null, $textDomain = null)
+    {
+        if ($translator) {
+            $this->_translator = $translator;
+            $this->_translator_enabled = true;
+        }
+        if ($textDomain) {
+            $this->_textDomain = $textDomain;
+        }
     }
 
 }

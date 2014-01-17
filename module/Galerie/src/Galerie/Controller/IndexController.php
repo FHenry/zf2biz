@@ -15,7 +15,6 @@ use Zend\Feed\Writer\FeedFactory;
 use Zend\Feed\Reader\Reader as FeedReader;
 
 use Galerie\Model\Galerie;
-use Galerie\Graph\Test as TestPie;
 
 class IndexController extends AbstractActionController 
 {
@@ -27,6 +26,7 @@ class IndexController extends AbstractActionController
     private $_galerieMailSender;
     private $_viewResolver;
     private $_galeriePairTable;
+    private $_myPie;
 
     private $_translator;
     private $_log;
@@ -103,6 +103,15 @@ class IndexController extends AbstractActionController
             $this->_viewResolver = $sm->get('ViewResolver');
         }
         return $this->_viewResolver;
+    }
+    
+    private function _getMyPie()
+    {
+        if (!$this->_myPie) {
+            $sm = $this->getServiceLocator();
+            $this->_myPie = $sm->get('Galerie\Graph\MyPie');
+        }
+        return $this->_myPie;
     }
 
     private function _getGaleriePairTable()
@@ -302,9 +311,11 @@ class IndexController extends AbstractActionController
             $noms[] = $d->name;
         }
 
+        
         // Construction (et envoi) du diagramme
-        $pie = new TestPie($nombres, $noms);
-
+        $pie = $this->_getMyPie();
+        $pie->render($nombres,$noms);
+        
         $response = $this->getResponse();
         $response->setStatusCode(200);
         $response->setContent('');
