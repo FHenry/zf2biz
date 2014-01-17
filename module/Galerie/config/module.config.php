@@ -222,9 +222,12 @@ return array(
         ), 
     ), 
     'mail' => array(
-        'name' => 'free',
-        'host' => 'smtp.free.fr',
-        'port' => 25,
+        'ssl'      => 'tls',
+        'port'     => '465',
+        'auth'     => 'login',
+        'username' => 'formation@tipunk.fr',
+        'password' => 'formation123',
+        'host'     => 'smtp.gmail.com'
     ),
     'rss' => array(
         'title' => 'Galeries',

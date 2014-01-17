@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Projet galerie, Module galerie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-18 13:02+0100\n"
-"PO-Revision-Date: 2012-11-18 13:02+0100\n"
-"Last-Translator: Sébastien CHAZALLET <s.chazallet@gmail.com>\n"
+"POT-Creation-Date: 2014-01-17 09:59+0100\n"
+"PO-Revision-Date: 2014-01-17 09:59+0100\n"
+"Last-Translator: formation <formation@zendframewrok.com>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -12,68 +12,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;translate\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/git/zf2biz/galerie/module/Galerie\n"
+"X-Poedit-SearchPath-0: /home/zendformation/workspace/galerie/module/Galerie\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Form/galerie.form.config.php:15
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Form/galerie.form.config.php:15
 msgid "Galerie_form_label_name"
 msgstr "Nom de la galerie"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Form/galerie.form.config.php:24
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Form/galerie.form.config.php:24
 msgid "Galerie_form_label_description"
 msgstr "Description de la galerie"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:86
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:336
 msgid "Galerie_index_table_lien_view"
 msgstr "Voir"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:87
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:337
 msgid "Galerie_index_table_lien_edit"
 msgstr "Éditer"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:88
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:338
 msgid "Galerie_index_table_lien_del"
 msgstr "Supprimer"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:168
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:425
 msgid "Galerie_added"
 msgstr "La nouvelle galerie a bien été ajoutée"
 
-#: /var/git/zf2biz/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:170
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:427
 msgid "Galerie_updated"
 msgstr "La galerie a bien été modifiée"
 
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:1
-msgid "Galerie_index_title"
-msgstr "Liste des galeries"
+#: /home/zendformation/workspace/galerie/module/Galerie/src/Galerie/Controller/IndexController.php:440
+msgid "Galerie_form_error"
+msgstr "Il y a une/des erreur(s) dans le formulaire, vérifiez les messages"
 
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:11
-msgid "Galerie_index_table_name"
-msgstr "Nom de la galerie"
-
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:12
-msgid "Galerie_index_table_description"
-msgstr "Description"
-
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:15
-msgid "Galerie_index_table_username"
-msgstr "Propriétaire"
-
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:18
-msgid "Galerie_index_table_nb"
-msgstr "Nombre"
-
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/index.phtml:21
-msgid "Galerie_index_table_actions"
-msgstr "Actions"
-
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/edit.phtml:2
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/edit.phtml:2
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:6
 msgid "Galerie_add_title"
 msgstr "Ajouter une galerie"
 
-#: /var/git/zf2biz/galerie/module/Galerie/view/galerie/index/edit.phtml:4
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/edit.phtml:4
 msgid "Galerie_edit_title"
 msgstr "Modifier une galerie"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:1
+msgid "Galerie_index_title"
+msgstr "Liste des galeries"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:11
+msgid "Galerie_index_table_name"
+msgstr "Nom de la galerie"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:12
+msgid "Galerie_index_table_description"
+msgstr "Description"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:15
+msgid "Galerie_index_table_username"
+msgstr "Propriétaire"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:18
+msgid "Galerie_index_table_nb"
+msgstr "Nombre"
+
+#: /home/zendformation/workspace/galerie/module/Galerie/view/galerie/index/index.phtml:21
+msgid "Galerie_index_table_actions"
+msgstr "Actions"
 
 #~ msgid "Galerie_index_table_void"
 #~ msgstr "Il n'y a aucune galeries pour le moment"

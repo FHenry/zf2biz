@@ -21,11 +21,18 @@ class MailSender
     public static function initialize($params)
     {
         static::$transport = new SmtpTransport();
-        static::$transport->setOptions(new SmtpOptions(array(
-            'name' => $params['name'],
-            'host' => $params['host'],
-            'port' => $params['port'],
-        )));
+        $smtpOption=new SmtpOptions();
+        
+        $smtpOption->setHost($params['host'])
+                    ->setConnectionClass($params['auth'])
+                    ->setName($params['host'])
+                    ->setConnectionConfig(array(
+                        'username' => $params['username'],
+                        'password' => $params['password'],
+                        'ssl' => $params['ssl'],
+                    ));
+       
+        static::$transport->setOptions($smtpOption);
     }
 
 

@@ -275,8 +275,8 @@ class IndexController extends AbstractActionController
         // Envoi du courriel
         $mailSender = $this->_getGalerieMailSender();
         $mailSender->send(
-            'florian.henry@open-concept.pro', 'Moi',//'sender@example.com', 'Moi',
-            'florian.henry@open-concept.pro', 'Toi',//'to@example.com', 'Toi',
+            'formation@tipunk.fr', 'Moi',//'sender@example.com', 'Moi',
+            'formation@tipunk.fr', 'Toi',//'to@example.com', 'Toi',
             'Test', 'Hello World 4.', $body_html ,'toto.png'
         );
 
@@ -434,9 +434,10 @@ class IndexController extends AbstractActionController
                 // Redirection vers la page Galerie/Index
                 return $this->postRedirectGet('galerie');
             }else {
+                $translator = $this->_getTranslator();
                 $messenger = $this->flashMessenger();
                 $messenger->setNamespace('errors');
-                $messenger->addMessage('Il y a une/des erreur(s) dans le formulaire, verifiez les messages');
+                $messenger->addMessage($translator->translate('Galerie_form_error', 'galerie'));
             }
         }
 
