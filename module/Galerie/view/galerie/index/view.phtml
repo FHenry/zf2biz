@@ -6,11 +6,20 @@
 <p>Propriétaire&nbsp;: <?php echo $galerie->username; ?></p>
 <p>Nombre de photographies&nbsp;: <?php echo $galerie->nb; ?></p>
 
+<h1>Photos</h1>
+
+<p>
+<?php foreach($photos as $photo): ?>
+<?php /*var_dump($photo);exit;*/ ?>
+<img src="<?php echo $this->url('galerie/photo', array('idgallery'=>$photo->id_gallery, 'filename'=>$photo->filename, 'ext'=>$photo->extension)); ?>" height="50px" width="50px" />
+<?php endforeach; ?>
+</p>
+
 <h1>Navigation</h1>
 <h2>Accès direct aux autres galeries</h2>
 <ul>
 <?php foreach($pairs as $id => $name): ?>
-<li><a href="<?php echo $this->url('galerie/view', array('id'=>$id)); ?>"><?php echo $name; ?></a></li>
+<li><a href="<?php echo $this->url('galerie/photo', array('id'=>$id)); ?>"><?php echo $name; ?></a></li>
 <?php endforeach; ?>
 </ul>
 

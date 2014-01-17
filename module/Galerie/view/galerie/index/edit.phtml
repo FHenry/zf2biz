@@ -29,6 +29,11 @@
     </span>
 </div>
 <div style="overflow: hidden; width: 100%;">
+    <?php echo $this->formFile($form->get('fileUpload')); ?>
+</div>
+    
+</div>
+<div style="overflow: hidden; width: 100%;">
     <span style="width: 250px; margin-left: 162px;">
         <?php echo $this->formSubmit($form->get('submit')); ?>
     </span>

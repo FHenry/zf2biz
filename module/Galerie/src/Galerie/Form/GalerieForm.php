@@ -12,6 +12,7 @@ class GalerieForm extends AbstractForm
     {
         $elements = include __DIR__ . '/galerie.form.config.php';
         $this->addElements($elements);
+        /*$this->setAttrib('enctype', 'multipart/form-data');*/
         /* Méthode alternative
         $this->setMethod('post');
         $this->addElement('id', 'hidden');

@@ -98,6 +98,20 @@ return array(
                             ),
                         ),
                     ),
+                    'photo' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/photo[/:idgallery[/:filename[/:ext]]]',
+                            'constraints' => array(
+                                'idgallery' => '[1-9][0-9]*',
+                                'filename' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'ext' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'action' => 'photo',
+                            ),
+                        ),
+                    ),
                     'add_or_edit' => array(
                         'type'    => 'Segment',
                         'options' => array(

@@ -23,6 +23,7 @@ use \Zend\Log\Writer\FirePhp\FirePhpBridge;
 use Galerie\Model\GalerieTable;
 use Galerie\Model\GalerieInfoTable;
 use Galerie\Model\GalerieInfoRssTable;
+use Galerie\Model\PhotoTable;
 use Galerie\Model\Contact;
 
 use Galerie\Form\GalerieForm;
@@ -103,6 +104,11 @@ class Module implements
                     $result->setTranslator($sm->get('translator'), 'galerie');
                     $result->initialize();
                     return $result;
+                },
+                'Galerie\Model\PhotoTable' => function($sm) {
+                    return new PhotoTable(
+                        $sm->get('Zend\Db\Adapter\Adapter')
+                    );
                 },
                 'Galerie\Export\GalerieWorkbook' => function ($sm) {
                     return new GalerieWorkbook;

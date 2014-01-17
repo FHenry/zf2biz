@@ -1,4 +1,5 @@
 <?php
+use Doctrine\DBAL\Types\Type;
 return array(
     array(
         'name' => 'id',
@@ -22,6 +23,16 @@ return array(
         ),
         'options' => array(
             'label' => $this->translate('Galerie_form_label_description'),
+        ),
+    ),
+    array(
+        'name' => 'fileUpload',
+        'type' => 'Zend\Form\Element\File',
+        'attributes' => array(
+            'multiple' => true,
+        ),
+        'options' => array(
+            'label' => $this->translate('Galerie_form_image_sender'),
         ),
     ),
     array(

@@ -20,6 +20,7 @@ class IndexController extends AbstractActionController
 {
 
     private $_galerieTable;
+    private $_photoTable;
     private $_galerieInfoTable;
     private $_galerieForm;
     private $_galerieInfoExporter;
@@ -76,6 +77,15 @@ class IndexController extends AbstractActionController
             $this->_galerieForm = $sm->get('Galerie\Form\GalerieForm');
         }
         return $this->_galerieForm;
+    }
+    
+    private function _getPhotoTable()
+    {
+        if (!$this->_photoTable) {
+            $sm = $this->getServiceLocator();
+            $this->_photoTable = $sm->get('Galerie\Model\PhotoTable');
+        }
+        return $this->_photoTable;
     }
 
     private function _getGalerieInfoExporter()
@@ -268,6 +278,28 @@ class IndexController extends AbstractActionController
         // Renvoi d'une réponse vide pour désactiver le rendu de la vue
         return $this->getResponse();
     }
+    
+    public function photoAction() {
+        $id_gallery = $this->params()->fromRoute('idgallery', null);
+        $filename = $this->params()->fromRoute('filename', null);
+        $extension = $this->params()->fromRoute('ext', null);
+        
+        // Récupération du contenu de l'image
+        $imageContent = file_get_contents("data/images/{$id_gallery}/{$filename}.{$extension}");
+            
+        // get image content
+        $response = $this->getResponse();
+    
+        $response->setContent($imageContent);
+        $response
+            ->getHeaders()
+            ->addHeaderLine('Content-Transfer-Encoding', 'binary')
+            ->addHeaderLine('Content-Type', 'image/png')
+            ->addHeaderLine('Content-Length', mb_strlen($imageContent));
+    
+        return $response;
+    }
+    
 
 
     public function mailAction()
@@ -380,6 +412,7 @@ class IndexController extends AbstractActionController
     {
         // Création du formulaire
         $form = $this->_getGalerieForm();
+        
 
         // Récupération de l'objet de travail
         $id = $this->params()->fromRoute('id', null);
@@ -389,6 +422,8 @@ class IndexController extends AbstractActionController
             $galerie = $this->_getGalerieTable()->any(array('id' => $id));
             if (!$galerie) {
                 return $this->redirect()->toRoute('galerie');
+            } else {
+                $photos = $this->_getPhotoTable()->all_by_gallery($id);
             }
         }
 
@@ -409,13 +444,25 @@ class IndexController extends AbstractActionController
             $is_new = false;
         }
 
+        if (!$photos && !$is_new) {
+            $translator = $this->_getTranslator();
+            $messenger = $this->flashMessenger();
+            $messenger->setNamespace('infos');
+            $messenger->addMessage($translator->translate('Photo_info_no_photo', 'galerie'));
+        }
+
         // Récupération de l'objet requête
         $request = $this->getRequest();
         if ($request->isPost()) {
             // Mise en place pour la validation du formulaire
             $form->setInputFilter($galerie->getInputFilter());
-            $form->setData($request->getPost());
-
+            
+            $post = array_merge_recursive(
+            	$request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            );
+            $form->setData($post);
+            
             // Validation des données
             if ($form->isValid()) {
                
@@ -427,6 +474,25 @@ class IndexController extends AbstractActionController
                     $galerie->id_user = 1; //TODO: Mettre ici le user connecté
                 } else {
                 	$galerie = $form->getData();
+                	$fileArr = $this->params()->fromFiles('fileUpload');
+                	//var_dump($fileArr);exit;
+                	
+                	$adapter = new \Zend\File\Transfer\Adapter\Http();
+                	// $size = new \Zend\Validator\File\Size(array('min' => 1 )); // minimum bytes filesize, max too..
+                	// $extension = new \Zend\Validator\File\Extension(array('extension' => array('jpg', 'txt')));
+                	//$adapter->setValidators(array($size, $extension), $fileArr['name']);
+                	$adapter->setValidators(array(), $fileArr[0]['name']);
+                	/**
+                	 * Valid Upload
+                	*/
+                	if($adapter->isValid()) {
+                	    $adapter->setDestination(realpath('./data/images/'.$galerie->id.'/'));
+                	    if($adapter->receive($fileArr[0]['name'])) {
+                	        $filename = $adapter->getFileName();
+                	        // Do something.. dans la base
+                	    }
+                	}
+                	
                 }
                 $this->_getGalerieTable()->save($galerie);               
                 $translator = $this->_getTranslator();
@@ -467,6 +533,7 @@ class IndexController extends AbstractActionController
             'id' => $id,
             'form' => $form,
             'is_new' => $is_new,
+            'photos' => $photos,
         ));
         
         
@@ -485,9 +552,17 @@ class IndexController extends AbstractActionController
     {
         $id = $this->params()->fromRoute('id', null);
         $galerie = $this->_getGalerieInfoTable()->any($id);
-
+        $photos = $this->_getPhotoTable()->all_by_gallery($id);
         if (!$galerie) {
             return $this->redirect()->toRoute('galerie');
+        }
+        if (!$photos) {
+                $translator = $this->_getTranslator();
+                $messenger = $this->flashMessenger();
+                $messenger->setNamespace('infos');
+                $messenger->addMessage($translator->translate('Photo_info_no_photo', 'galerie'));
+        } else {
+            // Aff
         }
 
         $pairs = $this->_getGaleriePairTable()->all();
@@ -496,11 +571,12 @@ class IndexController extends AbstractActionController
         $session = new Container('lastview');
         $session->offsetSet('last', $id);
 
-        return new ViewModel(array(
+        return new ViewModel(array_merge($this->MessageGetter(), array(
             'id' => $id,
             'galerie' => $galerie,
             'pairs' => $pairs,
-        ));
+            'photos' => $photos,
+        )));
     } 
 
 } 
