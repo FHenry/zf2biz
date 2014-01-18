@@ -1,11 +1,12 @@
-ZendSkeletonApplication
+ZF2Biz demo application from zf2.biz 
 =======================
 
 Introduction
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+This is a sample application of Gallerie
+Come from http://git.zf2.biz/zf2.biz/galerie.git
+
+Functionnal on Zend Framework 2.2.5
 
 
 Installation
@@ -23,8 +24,8 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 `composer.phar`:
 
     cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
+    git clone git://github.com/FHenry/zf2biz.git
+    cd galerie
     php composer.phar self-update
     php composer.phar install
 
@@ -35,7 +36,7 @@ Another alternative for downloading the project is to grab it via `curl`, and
 then pass it to `tar`:
 
     cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+    curl -#L git://github.com/FHenry/zf2biz.git/tarball/master | tar xz --strip-components=1
 
 You would then invoke `composer` to install dependencies per the previous
 example.
@@ -50,3 +51,7 @@ Virtual Host
 ------------
 Afterwards, set up a virtual host to point to the public/ directory of the
 project and you should be ready to go!
+
+Credentials :
+------------
+Original Author : Sebastien CHAZALET
